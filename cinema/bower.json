@@ -1,0 +1,28 @@
+{
+  "name": "Cinema",
+  "description": "Cinema Project ",
+  "main": [
+    "assets/styles/main.sass"
+  ],
+  "dependencies": {
+    "get-size": "~1.2.2",
+    "eventEmitter": "~4.2.11"
+  },
+  "keywords": [
+    "css",
+    "sass",
+    "bower",
+    "bower"
+  ],
+  "authors": [
+    "Betty Beta <bbeta@example.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
