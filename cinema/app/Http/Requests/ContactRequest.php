@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Requests;
+namespace Cinema\Http\Requests;
 
-use App\Http\Requests\Request;
+use Cinema\Http\Requests\Request;
 
 class ContactRequest extends Request
 {

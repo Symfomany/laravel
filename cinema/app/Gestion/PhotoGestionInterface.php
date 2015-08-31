@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Gestion;
+namespace Cinema\Gestion;
 
 
 interface PhotoGestionInterface{

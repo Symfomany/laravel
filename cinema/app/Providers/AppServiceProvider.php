@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Cinema\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -25,8 +25,8 @@ class AppServiceProvider extends ServiceProvider
     {
 
         $this->app->bind(
-            'App\Gestion\PhotoGestionInterface',
-            'App\Gestion\PhotoGestion'
+            'Cinema\Gestion\PhotoGestionInterface',
+            'Cinema\Gestion\PhotoGestion'
         );
 
     }

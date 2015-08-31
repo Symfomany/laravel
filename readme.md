@@ -1,10 +1,14 @@
 ## Overview about Laravel Application
 
 
-Requis:
+## Requirements:
 + Sessions
 + P.O.O. : Classes, Héritages, Interfacing,  Traits, Polymorphisme, Encapuslation, Facade pattern, DIC, Design patterns
-
++ PHP >= 5.5.9
++ OpenSSL PHP Extension
++ PDO PHP Extension
++ Mbstring PHP Extension
++ Tokenizer PHP Extension
 
 
 ## About Laravel 5
@@ -77,6 +81,15 @@ Requis:
 + The vendor directory contains your Composer dependencies.
 
 
+
+
+## Namespace
+
+As discussed above, the default application namespace is App; however, you may change this namespace to match the name of your application, which is easily done via the app:name Artisan command. 
+For example, if your application is named "Ci", nemayou would run the following command:
++ php artisan app:name SocialNet
+
+
 ## App directory
 
 + The app directory ships with a variety of additional directories such as Console, Http, and Providers.:
@@ -88,6 +101,72 @@ Requis:
 + The Listeners directory contains the handler classes for your events. Handlers receive an event and perform logic in response to the event being fired. For example, a UserRegistered event might be handled by a SendWelcomeEmail listener.
 
 + The Exceptions directory contains your application's exception handler and is also a good place to stick any exceptions thrown by your application.
+
+
+## Installation
+
+Via Laravel Installer
++ composer global require "laravel/installer=~1.1"
+Make sure to place the ~/.composer/vendor/bin directory in your PATH so the laravel executable can be located by your system.
+And next:
+laravel new blog
+
+
+Or via Composer:
++ composer create-project laravel/laravel --prefer-dist
+  
+
+Directory Permissions
+Directories within the /storage and the /bootstrap/cache directories should be writable by your web server.
+If you are using the Homestead virtual machine, these permissions should already be set.
+
+
+The next thing you should do after installing Laravel is set your application key to a random string.
+If you installed Laravel via Composer or the Laravel installer, this key has already been set for you by the key:generate command.
+Typically, this string should be 32 characters long
++ php artisan key:generate
+If the application key is not set, your user sessions and other encrypted data will not be secure!
+
+
+
+## Environment Configuration
+https://github.com/vlucas/phpdotenv =>  DotEnv PHP library
+All of the variables listed in this file will be loaded into the $_ENV PHP super-global when your application receives a request.
+
++ Accessing:
+$environment = App::environment();
+
++ You may also pass arguments to the environment method to check if the environment matches a given value. You may even pass multiple values if necessary:
+  
+
+if (App::environment('local')) {
+    // The environment is local
+}
+
+if (App::environment('local', 'staging')) {
+    // The environment is either local OR staging...
+}
+
+
+## General Config 
++ Debug à true
++ Url a modifier
++ Timezone
++ Language && Fallback
++ Providers; Services third
++ Aliases
+
+## Debogage
+
++ Require this package with composer:
+composer require barryvdh/laravel-debugbar
+
+Then,
+Barryvdh\Debugbar\ServiceProvider::class,
+'Debugbar' => Barryvdh\Debugbar\Facade::class,
+
+
+
 
 
 ## About Laravel PHP Framework

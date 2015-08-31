@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
-use App\Gestion\PhotoGestionInterface;
-use App\Http\Requests\ContactRequest;
+namespace Cinema\Http\Controllers;
+use Cinema\Gestion\PhotoGestionInterface;
+use Cinema\Http\Requests\ContactRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Session;
 
 /**
  * Class MoviesController
- * @package App\Http\Controllers
+ * @package Cinema\Http\Controllers
  */
 class MoviesController extends Controller
 {
