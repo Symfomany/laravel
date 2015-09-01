@@ -1,8 +1,8 @@
 <?php
 
-namespace Cinema\Http\Controllers;
-use Cinema\Gestion\PhotoGestionInterface;
-use Cinema\Http\Requests\ContactRequest;
+namespace App\Http\Controllers;
+use App\Gestion\PhotoGestionInterface;
+use App\Http\Requests\ContactRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
@@ -10,10 +10,22 @@ use Illuminate\Support\Facades\Session;
 
 /**
  * Class MoviesController
- * @package Cinema\Http\Controllers
+ * @package App\Http\Controllers
  */
 class MoviesController extends Controller
 {
+
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function search($visibilite = "1", $language= "fr", $duree = 2){
+
+        return view('Movies/search',[
+            'visible' => $visibilite,
+            'language' => $language,
+            'duree' => $duree
+        ]);
+    }
 
     /**
      * @return \Illuminate\View\View

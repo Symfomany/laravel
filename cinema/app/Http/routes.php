@@ -17,48 +17,167 @@ Route::get('/', ['as' => 'home',function () {
     return view('welcome');
 }]);
 
-Route::get('/test', function () {
-//    return view('test')->with('name', 'Boyer');
-    return view('test',['name' => 'Boyer'])->withFirstname('lala');
-});
-
-Route::get('/homepage', function () {
-    return "<h1>Test homepage</h1>";
-});
+/**
+ * Page de contact
+ */
+Route::get('/contact/{id}', ['uses' => 'PagesController@contact']);
 
 
 /**
- * Routes for Movies
+ * Routing implicit
+ * ou le préfix sera users et le contrilleurs et mes routes seront devinés
  */
-Route::get('/movies', ['uses' => 'MoviesController@index', 'as' => 'movies' ]);
-Route::get('/movies/list', 'MoviesController@index');
-Route::any('/movies/create',['as' => 'create','uses' => 'MoviesController@getForm']);
-Route::any('/movies/post',['as' => 'post','uses' => 'MoviesController@postCreate']);
-Route::get('/movies/{id}', 'MoviesController@view');
+Route::controller('users', 'UsersController');
+//Route::controller('categories', 'CategoriesController');
+//Route::controller('cinema', 'CinemasController');
+
+
+
+
+Route::get('/users/search/{ville?}-{zipcode?}-{enable?}',
+    ['uses' => 'UsersController@search'])
+    ->where([
+        'ville' => '[a-zA-Z-]+',
+        'zipcode'=> '[0-9]{5}',
+        'enable'=> '0|1']);
+
+
+Route::get('/movies/search/{langue?}-{visibilite?}-{duree?}',
+    ['uses' => 'MoviesController@search'])
+    ->where(['langue', 'fr|es|en', 'visibilite', '0|1', 'duree', '[1-9]{1,2}']);
+
+
+
+
+
+
+Route::group(['prefix' => 'actors', 'as' => 'actors'], function () {
+
+    /**
+     * Actors index: liste les acteurs
+     */
+    Route::get('/index/{ville?}', ['uses' => 'ActorsController@index',
+                                    'as' => '.index']);
+
+    /**
+     * Actors read: lit un seul acteur
+     */
+    Route::get('/read/{id}', ['uses' => 'ActorsController@read'])
+        ->where('id', '[0-9]+');
+
+    /**
+     * Modifie un seul acteur
+     */
+    Route::get('/update/{id}', ['uses' => 'ActorsController@update'])
+        ->where('id', '[0-9]+');
+
+    /**
+     * Supprimer un seul acteur
+     */
+    Route::get('/delete/{id}', ['uses' => 'ActorsController@delete'])
+    ->where('id', '[0-9]+');
+
+
+    /**
+     *  Création d'un acteur
+     */
+    Route::get('/create', ['uses' => 'ActorsController@create', 'as' => '.create']);
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /**
- * Another Routing
+ * Directors Routes
  */
-//get('1', function() { return 'Je suis la page 1 !'; });
-//get('2', function() { return 'Je suis la page 2 !'; });
-//get('3', function() { return 'Je suis la page 3 !'; });
-
-get('/{id}', function($id) {
-//    return 'Je suis la page ' . $id . ' !';
-    return response('Je suis la page ' . $id . ' !', 404);
-})->where('id', '[1-9]+');
 
 
-get('/redirect', ['as' => 'redirection', function()
-{
-//    return redirect('/');
-    return redirect()->route('home');
-}]);
+Route::group(['prefix' => 'directors'], function () {
+    Route::get('/index', ['uses' =>  'DirectorsController@index']);
+    Route::get('/read',  ['uses' =>  'DirectorsController@read']);
+    Route::get('/update', ['uses' => 'DirectorsController@update']);
+    Route::get('/delete', ['uses' => 'DirectorsController@delete']);
+    Route::get('/create', ['uses' => 'DirectorsController@create']);
+});
 
-get('article/{n}', function($n) {
-    return view('article')->with('numero', $n);
-})->where('n', '[0-9]+');
+
+
+
+
+/**
+ * Page de FAQ
+ */
+Route::get('/faq', function(){
+    return view('Pages/faq');
+});
+
+/**
+ * Page de Mentions Légales
+ */
+Route::get('/mentions-legales', function(){
+    return view('Pages/mt');
+});
+
+
+
+
+
+//
+//Route::get('/test', function () {
+////    return view('test')->with('name', 'Boyer');
+//    return view('test',['name' => 'Boyer'])->withFirstname('lala');
+//});
+//
+//Route::get('/homepage', function () {
+//    return "<h1>Test homepage</h1>";
+//});
+//
+//
+///**
+// * Routes for Movies
+// */
+//Route::get('/movies', ['uses' => 'MoviesController@index', 'as' => 'movies' ]);
+//Route::get('/movies/list', 'MoviesController@index');
+//Route::any('/movies/create',['as' => 'create','uses' => 'MoviesController@getForm']);
+//Route::any('/movies/post',['as' => 'post','uses' => 'MoviesController@postCreate']);
+//Route::get('/movies/{id}', 'MoviesController@view');
+//
+//
+///**
+// * Another Routing
+// */
+////get('1', function() { return 'Je suis la page 1 !'; });
+////get('2', function() { return 'Je suis la page 2 !'; });
+////get('3', function() { return 'Je suis la page 3 !'; });
+//
+//get('/{id}', function($id) {
+////    return 'Je suis la page ' . $id . ' !';
+//    return response('Je suis la page ' . $id . ' !', 404);
+//})->where('id', '[1-9]+');
+//
+//
+//get('/redirect', ['as' => 'redirection', function()
+//{
+////    return redirect('/');
+//    return redirect()->route('home');
+//}]);
+//
+//get('article/{n}', function($n) {
+//    return view('article')->with('numero', $n);
+//})->where('n', '[0-9]+');
 
 /**
  * <=>

@@ -11,6 +11,19 @@ var elixir = require('laravel-elixir');
  |
  */
 
+
+
 elixir(function(mix) {
-    mix.sass('app.scss');
+
+    mix.scripts([
+        "main.js",
+        "app.js"
+    ]).scriptsIn("public/js");
+
+    mix.styles([
+        "main.css",
+    ]).stylesIn("public/css");
+
+
+    mix.sass('footer.sass').stylesIn("public/css");
 });

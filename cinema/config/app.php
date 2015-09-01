@@ -146,9 +146,9 @@ return [
          * Application Service Providers...
          */
 
-        Cinema\Providers\AppServiceProvider::class,
-        Cinema\Providers\EventServiceProvider::class,
-        Cinema\Providers\RouteServiceProvider::class,
+        App\Providers\AppServiceProvider::class,
+        App\Providers\EventServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class
 
 
@@ -219,10 +219,9 @@ return [
         'View'  => Illuminate\Support\Facades\View::class,
         'Form'  => Collective\Html\FormFacade::class,
         'Html'  => Collective\Html\HtmlFacade::class,
+
         /*Debug Toolbar for log messages*/
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
-
-
     ],
 
 ];
