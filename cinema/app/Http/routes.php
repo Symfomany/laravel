@@ -60,6 +60,12 @@ Route::group(['prefix' => 'actors', 'as' => 'actors'], function () {
                                     'as' => '.index']);
 
     /**
+     *  Création d'un acteur
+     */
+    Route::get('/create', ['uses' => 'ActorsController@create',
+                            'as' => '.create']);
+
+    /**
      * Actors read: lit un seul acteur
      */
     Route::get('/read/{id}', ['uses' => 'ActorsController@read'])
@@ -77,11 +83,6 @@ Route::group(['prefix' => 'actors', 'as' => 'actors'], function () {
     Route::get('/delete/{id}', ['uses' => 'ActorsController@delete'])
     ->where('id', '[0-9]+');
 
-
-    /**
-     *  Création d'un acteur
-     */
-    Route::get('/create', ['uses' => 'ActorsController@create', 'as' => '.create']);
 
 });
 

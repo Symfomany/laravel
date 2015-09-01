@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Model\Actors;
 use App\Model\Categories;
 use App\Model\Movies;
 
@@ -56,25 +57,13 @@ class ActorsController extends Controller{
 //        dump($movies);
 //        dump($movies);
 
-        $datas = [
-            "acteurs" => [
-                ["nom" => "Boyer", "prenom" => "Julien", "age" => 27],
-                ["nom" => "De Brito", "prenom" => "Thaïs", "age" => 27],
-                ["nom" => "Rouquet", "prenom" => "Marjorie", "age" => 30],
-                ["nom" => "Lehne", "prenom" => "Matthieu", "age" => 30],
-            ],
-            'title' => "Liste des acteurs",
-            "noms" => ["Julien", "Matthieu", "Aurélien", "Thaïs", "Marjorie", "Daniel"],
-            "age" => [27, 30, 22, 27, 33, 65],
-//            "movie" => $movie,
-            "localite" =>[
-                "paris" =>
-                    ["Jessy", "Marjorie", "Daniel"],
-                "lyon" =>
-                    ["Thais", "Julien", "Matthieu"],
 
-            ]
+
+
+        $datas = [
+            "actors" => Actors::all()
         ];
+
 
         return view('Actors/index', $datas);
     }
