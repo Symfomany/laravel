@@ -77,16 +77,16 @@
             <span class="panel-title">Tableaux des acteurs</span>
             <div class="panel-heading-controls">
                 <div class="btn-group " role="group">
-                    <a href="{{route('movies.index') }}" class="active btn btn-primary"><i class="fa fa-language"></i> Tous</a>
-                    <a href="{{route('movies.index', ['bo' =>'VO']) }}" class="btn btn-primary"><i class="fa fa-language"></i> VO</a>
-                    <a href="{{route('movies.index', ['bo' =>'VF']) }}" class="btn btn-primary"><i class="fa fa-language"></i> VF</a>
-                    <a href="{{route('movies.index', ['bo' =>'VOST']) }}" class="btn btn-primary"><i class="fa fa-language"></i> VOST</a>
-                    <a href="{{route('movies.index', ['bo' =>'VOSTFR']) }}" class="btn btn-primary"><i class="fa fa-language"></i> VOSTFR</a>
+                    <a href="{{route('movies.index') }}" class="@if($bo == "*") active @endif btn btn-primary"><i class="fa fa-language"></i> Tous</a>
+                    <a href="{{route('movies.index', ['bo' =>'VO']) }}" class="@if($bo == "VO") active @endif  btn btn-primary"><i class="fa fa-language"></i> VO</a>
+                    <a href="{{route('movies.index', ['bo' =>'VF']) }}" class="@if($bo == "VF") active @endif  btn btn-primary"><i class="fa fa-language"></i> VF</a>
+                    <a href="{{route('movies.index', ['bo' =>'VOST']) }}" class="@if($bo == "VOST") active @endif btn btn-primary"><i class="fa fa-language"></i> VOST</a>
+                    <a href="{{route('movies.index', ['bo' =>'VOSTFR']) }}" class="@if($bo == "VOSTFR") active @endif btn btn-primary"><i class="fa fa-language"></i> VOSTFR</a>
                 </div>
                 <span style="color: #ccc">|</span>
                 <div class="btn-group " role="group">
-                    <a href="{{route('movies.index', ['visibilite' => 1, "bo" => "*"]) }}" class="btn btn-primary"><i class="fa fa-eye"></i> Visible</a>
-                    <a href="{{route('movies.index', ['visibilite' => 0, "bo" => "*"]) }}" class="btn btn-primary"><i class="fa fa-eye-slash"></i> Invisible</a>
+                    <a href="{{route('movies.index', ['visibilite' => 1, "bo" => "*"]) }}" class="@if($visibilite == 1) active @endif btn btn-primary"><i class="fa fa-eye"></i> Visible</a>
+                    <a href="{{route('movies.index', ['visibilite' => 0, "bo" => "*"]) }}" class="@if($visibilite == 0) active @endif btn btn-primary"><i class="fa fa-eye-slash"></i> Invisible</a>
                 </div>
                 <span style="color: #ccc">|</span>
                 <div class="btn-group " role="group">

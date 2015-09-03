@@ -79,7 +79,10 @@ class MoviesController extends Controller
         // methode numéro 1
 
         $data = [
-            "movies" => $movies
+            "movies" => $movies,
+            "bo" => $bo,
+            "visibilite" => $visibilite,
+            "distributeur" => $distributeur,
         ];
 
         return view('Movies/index', $data);
