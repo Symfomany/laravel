@@ -24,6 +24,14 @@ Route::get('/contact/{id}', ['uses' => 'PagesController@contact']);
 
 
 /**
+ * Page de recherche
+ */
+Route::get('/search', ['uses' => 'PagesController@search', 'as' => 'search']);
+
+
+
+
+/**
  * Routing implicit
  * ou le préfix sera users et le contrilleurs et mes routes seront devinés
  */
