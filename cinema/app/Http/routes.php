@@ -68,7 +68,8 @@ Route::group(['prefix' => 'actors', 'as' => 'actors'], function () {
     /**
      * Actors read: lit un seul acteur
      */
-    Route::get('/read/{id}', ['uses' => 'ActorsController@read'])
+    Route::get('/read/{id}', ['uses' => 'ActorsController@read',
+        "as" => ".read"])
         ->where('id', '[0-9]+');
 
     /**
@@ -80,14 +81,95 @@ Route::group(['prefix' => 'actors', 'as' => 'actors'], function () {
     /**
      * Supprimer un seul acteur
      */
-    Route::get('/delete/{id}', ['uses' => 'ActorsController@delete'])
+    Route::get('/delete/{id}', ['uses' => 'ActorsController@delete',
+        "as" => ".remove"])
     ->where('id', '[0-9]+');
-
 
 });
 
 
 
+
+
+
+Route::group(['prefix' => 'categories', 'as' => 'categories'], function () {
+
+    /**
+     * Actors index: liste les acteurs
+     */
+    Route::get('/index', ['uses' => 'CategoriesController@index',
+                                    'as' => '.index']);
+
+    /**
+     *  Création d'un acteur
+     */
+    Route::get('/create', ['uses' => 'CategoriesController@create',
+                            'as' => '.create']);
+
+    /**
+     * Actors read: lit un seul acteur
+     */
+    Route::get('/read/{id}', ['uses' => 'CategoriesController@read',
+        "as" => ".read"])
+        ->where('id', '[0-9]+');
+
+    /**
+     * Modifie un seul acteur
+     */
+    Route::get('/update/{id}', ['uses' => 'CategoriesController@update'])
+        ->where('id', '[0-9]+');
+
+    /**
+     * Supprimer un seul acteur
+     */
+    Route::get('/delete/{id}', ['uses' => 'CategoriesController@delete',
+        "as" => ".remove"])
+    ->where('id', '[0-9]+');
+
+});
+
+
+
+
+
+
+
+
+Route::group(['prefix' => 'movies', 'as' => 'movies'], function () {
+
+    /**
+     * Actors index: liste les acteurs
+     */
+    Route::get('/index/{bo?}/{visibilite?}/{distributeur?}', ['uses' => 'MoviesController@index',
+        'as' => '.index']);
+
+    /**
+     *  Création d'un acteur
+     */
+    Route::get('/create', ['uses' => 'MoviesController@create',
+        'as' => '.create']);
+
+    /**
+     * Actors read: lit un seul acteur
+     */
+    Route::get('/read/{id}', ['uses' => 'MoviesController@read',
+                             'as' => '.read'])
+        ->where('id', '[0-9]+');
+
+    /**
+     * Modifie un seul acteur
+     */
+    Route::get('/update/{id}', ['uses' => 'MoviesController@update'])
+        ->where('id', '[0-9]+');
+
+    /**
+     * Supprimer un seul acteur
+     */
+    Route::get('/delete/{id}', ['uses' => 'MoviesController@delete'])
+        ->where('id', '[0-9]+');
+
+
+});
 
 
 

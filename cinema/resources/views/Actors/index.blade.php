@@ -34,13 +34,14 @@
 
 @section('content')
 
-    <script>
-        init.push(function () {
-            $('#jq-datatables-example').dataTable();
-            $('#jq-datatables-example_wrapper .table-caption').text('Some header text');
-            $('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
-        });
-    </script>
+
+
+    <div class="">
+         <a href="" class="pull-right btn btn-success btn-medium"><i class="fa fa-plus"></i> Créer un acteur</a>
+        <br />
+    </div>
+    <hr />
+
 
     <div class="panel">
         <div class="panel-heading">
@@ -52,18 +53,26 @@
                     <div class="class="table-header clearfix"></div>
                         <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered dataTable no-footer" id="jq-datatables-example" aria-describedby="jq-datatables-example_info">
                             <thead>
-                                <th>Prénom</th>
+                                <th>Images</th>
                                 <th>Nom</th>
                                 <th>Naissance</th>
                                 <th>City</th>
+                                <th>Films</th>
+                                <th>Actions</th>
                             </thead>
                             <tbody>
                                 @foreach($actors as $actor)
                                     <tr class="">
-                                        <td class="sorting_1 center">{{ $actor->firstname }}</td>
-                                        <td class="sorting_2 center">{{ $actor->lastname }}</td>
+                                        <td class="col-lg-1"> <a class="thumbnail" href="{{ route('actors.read', ['id' => $actor->id]) }}"><img  class="img-responsive" src="{{ $actor->image }}" /></a> </td>
+                                        <td class="sorting_1 center"><i><a href="{{ route('actors.read', ['id' => $actor->id]) }}">{{ $actor->firstname }} {{ $actor->lastname }}</a></i></td>
                                         <td class="sorting_2 center">{{ $actor->dob }}</td>
                                         <td class="sorting_2 center">{{ $actor->city }}</td>
+                                        <td class="sorting_2 center"><strong>{{ count($actor->movies) }} <i class="fa fa-film"></i></strong></td>
+                                        <td class="sorting_2 center">
+                                            <a href="" class="btn btn-small"><i class="fa fa-search"></i> Voir</a>
+                                            <a href="{{ route('actors.remove', ['id' => $actor->id]) }}" class="btn btn-danger btn-small"><i class="fa fa-times"></i> Supprimer</a>
+
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

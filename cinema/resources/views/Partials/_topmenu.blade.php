@@ -32,15 +32,15 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-film"></i> Film</a>
                             <ul class="dropdown-menu">
-                                <li><a href="#"><i class="fa fa-search"></i> Voir les films</a></li>
+                                <li><a href="{{ route('movies.index')  }}"><i class="fa fa-search"></i> Voir les films</a></li>
                                 <li class="divider"></li>
-                                <li><a href="#"><i class="fa fa-plus"></i> Créer un film</a></li>
+                                <li><a href="{{ route('movies.create')  }}"><i class="fa fa-plus"></i> Créer un film</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-sitemap"></i> Catégories</a>
                             <ul class="dropdown-menu">
-                                <li><a href="#"><i class="fa fa-search"></i> Voir les catégories</a></li>
+                                <li><a href="{{ route('categories.index') }}"><i class="fa fa-search"></i> Voir les catégories</a></li>
                                 <li class="divider"></li>
                                 <li><a href="#"><i class="fa fa-plus"></i> Créer une catégorie</a></li>
                             </ul>
@@ -278,19 +278,19 @@
                                 </form>
                             </li>
 
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown">
-                                    <img src="assets/demo/avatars/1.jpg" alt="">
-                                    <span>John Doe</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#"><span class="label label-warning pull-right">New</span>Profile</a></li>
-                                    <li><a href="#"><span class="badge badge-primary pull-right">New</span>Account</a></li>
-                                    <li><a href="#"><i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;Settings</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="pages-signin.html"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Log Out</a></li>
-                                </ul>
-                            </li>
+                            {{--<li class="dropdown">--}}
+                                {{--<a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown">--}}
+                                    {{--<img src="assets/demo/avatars/1.jpg" alt="">--}}
+                                    {{--<span>John Doe</span>--}}
+                                {{--</a>--}}
+                                {{--<ul class="dropdown-menu">--}}
+                                    {{--<li><a href="#"><span class="label label-warning pull-right">New</span>Profile</a></li>--}}
+                                    {{--<li><a href="#"><span class="badge badge-primary pull-right">New</span>Account</a></li>--}}
+                                    {{--<li><a href="#"><i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;Settings</a></li>--}}
+                                    {{--<li class="divider"></li>--}}
+                                    {{--<li><a href="pages-signin.html"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Log Out</a></li>--}}
+                                {{--</ul>--}}
+                            {{--</li>--}}
                         </ul> <!-- / .navbar-nav -->
                     </div> <!-- / .right -->
                 </div>

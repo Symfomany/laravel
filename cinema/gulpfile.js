@@ -15,13 +15,16 @@ var elixir = require('laravel-elixir');
 
 elixir(function(mix) {
 
+    mix.copy('resources/img/**', 'public/images');
+
+
     mix.scripts([
-        "main.js",
         "app.js"
     ]).scriptsIn("public/js");
 
     mix.styles([
         "main.css",
+        "index.css"
     ]).stylesIn("public/css");
 
 

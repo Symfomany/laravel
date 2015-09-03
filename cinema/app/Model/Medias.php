@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
  * Class Actors représentant la table actors
  * @package App\Model
  */
-class Actors extends Model{
+class Medias extends Model{
 
     /**
      * Nom de ma table
      * @var string
      */
-    protected $table = 'actors';
+    protected $table = 'medias';
 
 
 
@@ -21,7 +21,7 @@ class Actors extends Model{
 
     public function movies()
     {
-        return $this->belongsToMany('App\Model\Movies');
+        return $this->belongsToOne('App\Model\Medias');
     }
 
 }

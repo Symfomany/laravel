@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Model\Actors;
 use App\Model\Categories;
 use App\Model\Movies;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 
 /**
@@ -12,6 +14,12 @@ use App\Model\Movies;
  */
 class ActorsController extends Controller{
 
+
+//    public function __construct()
+//    {
+//        $this->middleware('auth');
+//        $this->middleware('admin');
+//    }
 
     /**
      * Page Index
@@ -100,7 +108,11 @@ class ActorsController extends Controller{
      * Page FAQ
      */
     public function read($id = null){
-        return view('Actors/read', ['id' => $id]);
+        $datas = [
+            'actor' => Actors::find($id)
+        ];
+
+        return view('Actors/read', $datas);
     }
 
     /**
@@ -108,7 +120,15 @@ class ActorsController extends Controller{
      */
     public function delete($id){
 
-        return redirect('/actors/index', ['id' => $id]); //redirection vers l'index
+        // supprimer un acteur
+        $actor = Actors::find($id);
+        $actor->delete();
+
+        //jécris en session un message flash
+        Session::flash('success',"L'acteur {$actor->fitsname} {$actor->lastname} a bien été supprimé" );
+
+        //je redirige
+        return  Redirect::route('actors.index');
     }
 
 

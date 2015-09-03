@@ -46,6 +46,30 @@ class Movies extends Model{
         return $this->belongsTo('App\Model\Categories');
     }
 
+    public function sessions()
+    {
+        return $this->hasMany('App\Model\Sessions');
+    }
+
+    public function tags()
+    {
+        return $this->hasMany('App\Model\Tags');
+    }
+
+    public function medias()
+    {
+        return $this->hasMany('App\Model\Medias');
+    }
+
+    public function directors()
+    {
+        return $this->hasMany('App\Model\Comments');
+    }
+
+    public function actors()
+    {
+        return $this->belongsToMany('App\Model\Actors');
+    }
     public function comments()
     {
         return $this->hasMany('App\Model\Comments');

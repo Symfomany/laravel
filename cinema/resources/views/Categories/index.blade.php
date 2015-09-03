@@ -1,69 +1,33 @@
 @extends('layout')
 
+@section('css')
+    @parent
+    <link href="{{ asset('css/actors/index.css') }}" rel="stylesheet" />
+@endsection
+
+@section('breadscrumb')
+    <li><a href="#">Home</a></li>
+    <li class="active"><a href="#">Catégories</a></li>
+    <li class="active"><a href="#"><strong>Liste</strong></a></li>
+@show
+
+@section('title')
+    Liste des catégories
+@endsection
+
+@section('subtitle')
+    <div class="page-header">
+        <h1>
+            <i class="fa fa-users page-header-icon"></i>
+            Liste des catégories
+        </h1>
+    </div>
+@endsection
+
+
+
 @section('content')
 
-    {{-- This comment will not be in the rendered HTML --}}
 
-    {{--<h3>{{ $movie->title  }}</h3>--}}
-    {{--<p>{{ $movie->annee  }}</p>--}}
-
-
-    {{--@include('Partials/_subtitle')--}}
-
-
-    <h1>Page Acteurs index</h1>
-
-    <h3>{{ $title }}</h3>
-
-    <ul>
-      @foreach($noms as $nom)
-          <li>{{ $nom  }}</li>
-      @endforeach
-    </ul>
-
-    <ul>
-        @foreach($age as $age)
-            <li>{{ $age  }}</li>
-        @endforeach
-    </ul>
-
-
-    @for ($i = 0; $i < 10; $i++)
-        The current value is {{ $i }}
-    @endfor
-
-    @if (count($age) === 1)
-        I have one record!
-    @elseif (count($age) > 1)
-        I have multiple records!
-    @else
-        I don't have any records!
-    @endif
-
-    <p>{{ $chaine or "Texte par défaut"  }}</p>
-
-    <ul>
-        @foreach($localite as $ville => $acteurs)
-            @if($ville == "Paris")
-                <li>{{ $ville }}</li>
-                <ul>
-                    @foreach($acteurs as $acteur)
-                        <li>{{ $acteur }}</li>
-                    @endforeach
-                </ul>
-            @endif
-        @endforeach
-    </ul>
-
-    <ul>
-        @foreach($acteurs as  $clef => $val)
-                <li> {{ $val  }}</li>
-        @endforeach
-    </ul>
-
-{{--    <a href="{{ route("read", ['id' => 123])  }}">lien vers read</a>--}}
-    <form action="">
-
-    </form>
 
 @endsection

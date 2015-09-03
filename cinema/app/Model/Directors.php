@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
  * Class Actors représentant la table actors
  * @package App\Model
  */
-class Actors extends Model{
+class Directors extends Model{
 
     /**
      * Nom de ma table
      * @var string
      */
-    protected $table = 'actors';
+    protected $table = 'directors';
 
 
 

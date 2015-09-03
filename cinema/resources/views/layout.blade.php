@@ -43,7 +43,6 @@
 <body class="theme-default main-menu-animated">
 
 <script>var init = [];</script>
-<script src="{{ asset('js/demo.js') }}"></script>
 
 <div id="main-wrapper">
 
@@ -299,9 +298,10 @@
         </ul>
 
 
-    @section('subtitle')
-            <h1>Titre par defaut</h1>
+        @section('subtitle')
         @show
+
+        @include('Partials/_flashdatas')
 
         {{-- Permet de définir un bloc nommé content --}}
         @yield('content')
@@ -311,7 +311,7 @@
 
 </div> <!-- / #main-wrapper -->
 
-@include('Partials/_footer')
+    @include('Partials/_footer')
 
     @section('js')
 
@@ -325,8 +325,7 @@
 
 
         <!-- Pixel Admin's javascripts -->
-        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('js/pixel-admin.min.js') }}"></script>
+        <script src="{{ asset('js/all.js') }}"></script>
 
         <script type="text/javascript">
             init.push(function () {

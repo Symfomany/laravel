@@ -1,8 +1,11 @@
 $(document).ready(function(){
-   console.log('ok');
-});
-$(document).ready(function(){
-   console.log('lol');
+
+   init.push(function () {
+      $('#jq-datatables-example').dataTable();
+      $('#jq-datatables-example_wrapper .table-caption').text('');
+      $('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Rechercher...');
+   });
+
 });
 //# sourceMappingURL=all.js.map
 

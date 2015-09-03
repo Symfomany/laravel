@@ -1,5 +1,10 @@
-<html>
-<body>
-    <h1>Page Acteurs index</h1>
-</body>
-</html>
+@extends('layout')
+
+
+
+@section('content')
+    {{ $actor->firstname }}
+    {{ $actor->lastname }}
+    {{ strip_tags($actor->biography) }}
+
+@endsection

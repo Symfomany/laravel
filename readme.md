@@ -58,7 +58,7 @@
 +  2/ write migration with Eloquents
 +  3/ write restufful controllers
 +  4/ boostrap & boostra form
-
++ Create helpers
 
 ## Structure
 

@@ -11,32 +11,47 @@ use App\Model\Movies;
  */
 class CategoriesController extends Controller{
 
-
-    public function getIndex(){
+    /**
+     * Page Index
+     */
+    public function index(){
 
         return view('Categories/index');
     }
 
-    public function getCreate(){
+    /**
+     * Page Contact
+     */
+    public function create(){
 
         return view('Categories/create');
     }
 
     /**
-     * @param int $id
+     * Page Mention
      */
-    public function getUpdate($id){
+    public function update(){
 
         return view('Categories/update');
     }
 
     /**
-     * @param $id
+     * Page FAQ
      */
-    public function getDelete($id){
+    public function read(){
 
-        return redirect('categories/index');
+        return view('Categories/read');
     }
+
+    /**
+     * Page FAQ
+     */
+    public function delete(){
+
+        return redirect('/directors/index');
+    }
+
+
 }
 
 
