@@ -15,8 +15,11 @@ class CategoriesController extends Controller{
      * Page Index
      */
     public function index(){
+        $categories = Categories::all();
 
-        return view('Categories/index');
+        return view('Categories/index',
+            ['categories' => $categories]
+        );
     }
 
     /**

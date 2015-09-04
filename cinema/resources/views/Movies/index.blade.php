@@ -118,6 +118,7 @@
                     <th>Image</th>
                     <th>Activation</th>
                     <th>Titre</th>
+                    <th>Categorie</th>
                     <th>Description</th>
                     <th>Durée</th>
                     <th>Date de sortie</th>
@@ -142,12 +143,15 @@
                                     @endif
                             </td>
                             <td class="sorting_1 center"><i><a href="">{{ $movie->title }}</a></i></td>
+                            <td class="sorting_2 center">{{  $movie->ctitle  }}</td>
                             <td class="sorting_2 center">{{ str_limit( strip_tags($movie->description), $limit = 100, $end = '...') }}</td>
                             <td class="sorting_2 center"><strong>{{ $movie->duree }} h.</strong></td>
                             <td class="sorting_2 center">{{ $movie->date_release }}</td>
                             <td class="sorting_2 center">
-                                <a href="" class="btn btn-small"><i class="fa fa-search"></i> Voir</a>
-                                <a href="" class="btn btn-small"><i class="fa fa-times"></i> Supprimer</a>
+                                <a href="" class="btn btn-xs"><i class="fa fa-search"></i> Voir</a>
+                                <a href="" class="btn btn-xs"><i class="fa fa-times"></i> Supprimer</a>
+                                <a href="" class="btn btn-xs btn-primary"><i class="fa fa-thumbs-up"></i> Note de presse <small>({{ $movie->note_presse }}/5)</small></a>
+                                <a href="" class="btn btn-xs btn-danger"><i class="fa fa-thumbs-down"></i> Note de presse <small>({{ $movie->note_presse }}/5)</small></a>
 
                             </td>
                         </tr>

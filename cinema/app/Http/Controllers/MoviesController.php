@@ -51,8 +51,10 @@ class MoviesController extends Controller
             }
 
             //retourne le resultat
-        $movies = $movies->get();
+        $movies->join('categories', 'movies.categories_id', '=', 'categories.id');
+        $movies->select('categories.title as ctitle', 'movies.*');
 
+        $movies = $movies->get();
 
         //methode  numéro 1 avec ORM Eloquant
 //        $critere = array();

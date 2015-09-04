@@ -99,6 +99,20 @@ Route::group(['prefix' => 'actors', 'as' => 'actors'], function () {
 
 
 
+Route::group(['prefix' => 'comments', 'as' => 'comments'], function () {
+
+    /**
+     * Actors index: liste les acteurs
+     */
+    Route::get('/index', ['uses' => 'CommentsController@index',
+                                    'as' => '.index']);
+
+});
+
+
+
+
+
 
 Route::group(['prefix' => 'categories', 'as' => 'categories'], function () {
 

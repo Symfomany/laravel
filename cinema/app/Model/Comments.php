@@ -12,5 +12,22 @@ class Comments extends Model{
     public $timestamps = false;
 
 
+    public function movies()
+    {
+        return $this->belongsTo('App\Model\Movies');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Model\User');
+    }
+
+
+//    public function user()
+//    {
+//        return $this->belongsTo('App\Model\User');
+//    }
+
+
 }
 

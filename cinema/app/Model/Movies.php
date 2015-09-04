@@ -12,8 +12,6 @@ class Movies extends Model{
 
     public $timestamps = false;
 
-    protected $guarded = array('id', 'title');
-
 
     /**
      * Get ALl Movies Cover and visible
@@ -41,15 +39,25 @@ class Movies extends Model{
         ));
     }
 
+    /**
+     * Many to One (Inverse relation)
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function categories()
     {
         return $this->belongsTo('App\Model\Categories');
     }
 
+
+
+
     public function sessions()
     {
         return $this->hasMany('App\Model\Sessions');
     }
+
+
+
 
     public function tags()
     {
@@ -72,7 +80,7 @@ class Movies extends Model{
     }
     public function comments()
     {
-        return $this->hasMany('App\Model\Comments');
+        return $this->hasMany('App\Model\Comments', 'movies_id', 'id');
     }
 
 }

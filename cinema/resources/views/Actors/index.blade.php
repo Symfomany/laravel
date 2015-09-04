@@ -32,7 +32,103 @@
 
 
 
+
 @section('content')
+    <script>
+        init.push(function () {
+            Morris.Bar({
+                element: 'hero-bar',
+                data: [
+                    { device: 'New-York', geekbench: 5 },
+                    { device: 'Paris', geekbench: 8 },
+                    { device: 'San Francisco', geekbench: 3 },
+                    { device: 'Los Angeles', geekbench: 10 },
+                    { device: 'Toronto', geekbench: 15 },
+                    { device: 'Bagdad', geekbench: 9 }
+                ],
+                xkey: 'device',
+                ykeys: ['geekbench'],
+                labels: ['Villes'],
+                barRatio: 0.4,
+                xLabelAngle: 35,
+                hideHover: 'auto',
+                barColors: PixelAdmin.settings.consts.COLORS,
+                gridLineColor: '#cfcfcf',
+                resize: true
+            });
+        });
+    </script>
+
+
+
+    <script>
+        init.push(function () {
+            // Doughnut Chart Data
+            var doughnutChartData = [{
+                label: "Enre 18 et 25", data: 50
+            }, {
+                label: "Entre 25 et 35", data: 30
+            }, {
+                label: "Entre 35 et 45", data: 90
+            }, {
+                label: "Entre 45 et 60", data: 70
+            }, {
+                label: "Plus de 60", data: 80
+            }];
+
+            // Init Chart
+            $('#jq-flot-pie').pixelPlot(doughnutChartData, {
+                series: {
+                    pie: {
+                        show: true,
+                        radius: 1,
+                        innerRadius: 0.5,
+                        label: {
+                            show: true,
+                            radius: 3 / 4,
+                            formatter: function (label, series) {
+                                return '<div style="font-size:14px;text-align:center;padding:2px;color:white;">' + Math.round(series.percent) + '%</div>';
+                            },
+                            background: { opacity: 0 }
+                        }
+                    }
+                }
+            }, {
+                height: 205
+            });
+        });
+    </script>
+
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="panel">
+                <div class="panel-heading">
+                    <span class="panel-title">Répartition des acteurs par ville</span>
+                </div>
+                <div class="panel-body">
+                    <div class="graph-container">
+                        <div id="hero-bar" class="graph" style="position: relative;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel">
+                <div class="panel-heading">
+                    <span class="panel-title">Répartition des acteurs par âge</span>
+                </div>
+                <div class="panel-body">
+                    <div class="graph-container">
+                        <div id="jq-flot-pie"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
 
