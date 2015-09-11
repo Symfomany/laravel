@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\ActorsRequest;
 use App\Model\Actors;
-use App\Model\Categories;
 use App\Model\Movies;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 
 
@@ -13,6 +15,7 @@ use Illuminate\Support\Facades\Session;
  * @package App\Http\Controllers
  */
 class ActorsController extends Controller{
+
 
 
 //    public function __construct()
@@ -25,6 +28,14 @@ class ActorsController extends Controller{
      * Page Index
      */
     public function index($ville = "Paris"){
+
+
+//        $actor = Actors::find(33);
+//        $actor->delete();
+
+        // destroy me permet donc de supprimer un acteur par son ID
+        //Actors::destroy(6955);
+
 
 //        $movies = Movies::all();
 //        $movie = Movies::find(1);
@@ -80,8 +91,61 @@ class ActorsController extends Controller{
      * Page Contact
      */
     public function create(){
+        $categories =  DB::select('select id, title from movies');
+        $tab = array();
+        foreach($categories as $film){
+            $tab[$film->id] = $film;
+        }
 
-        return view('Actors/create');
+        return view('Actors/create', ['tab' => $tab]);
+    }
+
+    /**
+     * ActorsRequest est une classe de validaton de formulaire
+     * Cette classe est liée à la requête, c'est une classe FormRequest
+     * Le mécanisme de validation de formulaire dans Laravel
+     * valide le formulaire et fais une redirection vers create
+     * quand mon formulaire contient des erreurs sinon rentre
+     * dans l'action store()
+     */
+    public function store(ActorsRequest $request){
+
+        // J'enregistre un nouvel acteur dès que mon
+        // formulaire est valide(0 erreurs)
+
+        // Create a new user in the database...
+
+        $actor = new Actors();
+        $actor->firstname = $request->firstname;
+        $actor->lastname = $request->lastname;
+        $actor->dob = date_create_from_format("d/m/Y", $request->dob); //create from format => DateTime::createFromFormat
+        $actor->biography = $request->biography;
+        $actor->roles = $request->roles;
+        $actor->nationality = $request->nationality;
+        $actor->recompenses = $request->recompenses;
+
+        $filename = ""; //define null
+        if($request->hasFile('image'))
+        {
+            //save the name of file upload
+            $file = $request->file('image');
+            $filename = $file->getClientOriginalName();
+
+            // Move upload
+            $destinationPath = public_path() . '/uploads/actors/'; // path vers public/
+            $file->move($destinationPath, $filename); //move the image file into public/uploads
+        }
+
+        $actor -> image = asset("uploads/actors/". $filename);
+        //url vers l'image http://localhost:8000/uploads/actors/.00
+        $actor->save();
+
+        //jécris en session un message flash
+        Session::flash('success',"L'acteur {$actor->firstname} {$actor->lastname} a bien été crée" );
+
+        //je redirige
+        return  Redirect::route('actors.index');
+
     }
 
     /**

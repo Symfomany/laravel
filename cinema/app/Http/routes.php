@@ -1,33 +1,16 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
 /**
- * See RouteServiceProvider: Fournisseurs de routes
+ *
  */
-Route::get('/', ['as' => 'home',function () {
-    return view('welcome');
-}]);
+
+
 
 /**
  * Page de contact
  */
-Route::get('/contact/{id}', ['uses' => 'PagesController@contact']);
-
-
-/**
- * Page de recherche
- */
-Route::get('/search', ['uses' => 'PagesController@search', 'as' => 'search']);
-
+Route::get('/contact', ['as' => 'contact','uses' => 'PagesController@contact'
+]);
 
 
 
@@ -40,186 +23,242 @@ Route::controller('users', 'UsersController');
 //Route::controller('cinema', 'CinemasController');
 
 
-
-
-Route::get('/users/search/{ville?}-{zipcode?}-{enable?}',
-    ['uses' => 'UsersController@search'])
-    ->where([
-        'ville' => '[a-zA-Z-]+',
-        'zipcode'=> '[0-9]{5}',
-        'enable'=> '0|1']);
-
-
-Route::get('/movies/search/{langue?}-{visibilite?}-{duree?}',
-    ['uses' => 'MoviesController@search'])
-    ->where(['langue', 'fr|es|en', 'visibilite', '0|1', 'duree', '[1-9]{1,2}']);
-
-
-
-
-
-
-Route::group(['prefix' => 'actors', 'as' => 'actors'], function () {
-
-    /**
-     * Actors index: liste les acteurs
-     */
-    Route::get('/index/{ville?}', ['uses' => 'ActorsController@index',
-                                    'as' => '.index']);
-
-    /**
-     *  Création d'un acteur
-     */
-    Route::get('/create', ['uses' => 'ActorsController@create',
-                            'as' => '.create']);
-
-    /**
-     * Actors read: lit un seul acteur
-     */
-    Route::get('/read/{id}', ['uses' => 'ActorsController@read',
-        "as" => ".read"])
-        ->where('id', '[0-9]+');
-
-    /**
-     * Modifie un seul acteur
-     */
-    Route::get('/update/{id}', ['uses' => 'ActorsController@update'])
-        ->where('id', '[0-9]+');
-
-    /**
-     * Supprimer un seul acteur
-     */
-    Route::get('/delete/{id}', ['uses' => 'ActorsController@delete',
-        "as" => ".remove"])
-    ->where('id', '[0-9]+');
-
-});
-
-
-
-
-
-Route::group(['prefix' => 'comments', 'as' => 'comments'], function () {
-
-    /**
-     * Actors index: liste les acteurs
-     */
-    Route::get('/index', ['uses' => 'CommentsController@index',
-                                    'as' => '.index']);
-
-});
-
-
-
-
-
-
-Route::group(['prefix' => 'categories', 'as' => 'categories'], function () {
-
-    /**
-     * Actors index: liste les acteurs
-     */
-    Route::get('/index', ['uses' => 'CategoriesController@index',
-                                    'as' => '.index']);
-
-    /**
-     *  Création d'un acteur
-     */
-    Route::get('/create', ['uses' => 'CategoriesController@create',
-                            'as' => '.create']);
-
-    /**
-     * Actors read: lit un seul acteur
-     */
-    Route::get('/read/{id}', ['uses' => 'CategoriesController@read',
-        "as" => ".read"])
-        ->where('id', '[0-9]+');
-
-    /**
-     * Modifie un seul acteur
-     */
-    Route::get('/update/{id}', ['uses' => 'CategoriesController@update'])
-        ->where('id', '[0-9]+');
-
-    /**
-     * Supprimer un seul acteur
-     */
-    Route::get('/delete/{id}', ['uses' => 'CategoriesController@delete',
-        "as" => ".remove"])
-    ->where('id', '[0-9]+');
-
-});
-
-
-
-
-
-
-
-
-Route::group(['prefix' => 'movies', 'as' => 'movies'], function () {
-
-    /**
-     * Actors index: liste les acteurs
-     */
-    Route::get('/index/{bo?}/{visibilite?}/{distributeur?}', ['uses' => 'MoviesController@index',
-        'as' => '.index']);
-
-    /**
-     *  Création d'un acteur
-     */
-    Route::get('/create', ['uses' => 'MoviesController@create',
-        'as' => '.create']);
-
-    /**
-     * Actors read: lit un seul acteur
-     */
-    Route::get('/read/{id}', ['uses' => 'MoviesController@read',
-                             'as' => '.read'])
-        ->where('id', '[0-9]+');
-
-    /**
-     * Modifie un seul acteur
-     */
-    Route::get('/update/{id}', ['uses' => 'MoviesController@update'])
-        ->where('id', '[0-9]+');
-
-    /**
-     * Supprimer un seul acteur
-     */
-    Route::get('/delete/{id}', ['uses' => 'MoviesController@delete'])
-        ->where('id', '[0-9]+');
-
-
-});
-
-
-
-
-
-
-
-
-
-
-
+//Route::get('/auth/login',
+//    ['uses' => 'AuthentificationController@login']);
+//
+//Route::post('/auth/authenticate',
+//    ['uses' => 'AuthentificationController@authenticate', 'as' => 'authentificate']);
 
 
 /**
- * Directors Routes
+ * Routes implicites vers mes controlleurs préconcue
+ * car ces controlleurs use des traits
+ * avec les fonctionnalités de l'authentification deja
+ * faites( login, logout, register...)
  */
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController',
+]);
 
 
-Route::group(['prefix' => 'directors'], function () {
-    Route::get('/index', ['uses' =>  'DirectorsController@index']);
-    Route::get('/read',  ['uses' =>  'DirectorsController@read']);
-    Route::get('/update', ['uses' => 'DirectorsController@update']);
-    Route::get('/delete', ['uses' => 'DirectorsController@delete']);
-    Route::get('/create', ['uses' => 'DirectorsController@create']);
+
+
+// Authentication routes...
+//Route::get('auth/login', 'Auth\AuthController@getLogin');
+//Route::post('auth/login', 'Auth\AuthController@postLogin');
+//Route::get('auth/logout', 'Auth\AuthController@getLogout');
+//
+//// Registration routes...
+//Route::get('auth/register', 'Auth\AuthController@getRegister');
+//Route::post('auth/register', 'Auth\AuthController@postRegister');
+
+
+// Password reset link request routes...
+Route::get('password/email', 'Auth\PasswordController@getEmail');
+Route::post('password/email', 'Auth\PasswordController@postEmail');
+
+// Password reset routes...
+Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
+Route::post('password/reset', 'Auth\PasswordController@postReset');
+
+
+
+
+Route::group([ 'prefix' => 'admin',
+    'middleware' => 'auth'
+], function () {
+
+        Route::get('/', ['as' => 'home','uses' => 'PagesController@index']);
+
+
+
+        Route::group(['prefix' => 'actors', 'as' => 'actors'], function () {
+
+            /**
+             * Actors index: liste les acteurs
+             */
+            Route::get('/index/{ville?}', ['uses' => 'ActorsController@index',
+                                            'as' => '.index']);
+
+            /**
+             *  Création d'un acteur
+             */
+            Route::get('/create', ['uses' => 'ActorsController@create',
+                                    'as' => '.create']);
+            /**
+             *  Reception des données du formulaire
+             */
+            Route::post('/post', ['uses' => 'ActorsController@store',
+                                    'as' => '.post']);
+            /**
+             * Actors read: lit un seul acteur
+             */
+            Route::get('/read/{id}', ['uses' => 'ActorsController@read',
+                "as" => ".read"])
+                ->where('id', '[0-9]+');
+
+            /**
+             * Modifie un seul acteur
+             */
+            Route::get('/update/{id}', ['uses' => 'ActorsController@update'])
+                ->where('id', '[0-9]+');
+
+            /**
+             * Supprimer un seul acteur
+             */
+            Route::get('/delete/{id}', ['uses' => 'ActorsController@delete',
+                "as" => ".remove"])
+            ->where('id', '[0-9]+');
+
+        });
+
+
+        Route::group(['prefix' => 'comments', 'as' => 'comments'], function () {
+
+            /**
+             * Actors index: liste les acteurs
+             */
+            Route::get('/index', ['uses' => 'CommentsController@index',
+                                            'as' => '.index']);
+
+
+            /**
+             *
+             */
+            Route::get('/comments-ajax', ['uses' => 'CommentsController@ajax',
+                'as' => '.ajax']);
+
+        });
+
+
+        Route::group(['prefix' => 'categories', 'as' => 'categories'], function () {
+
+            /**
+             * Actors index: liste les acteurs
+             */
+            Route::get('/index', ['uses' => 'CategoriesController@index',
+                                            'as' => '.index']);
+
+            /**
+             *  Création d'un acteur
+             */
+            Route::get('/create', ['uses' => 'CategoriesController@create',
+                                    'as' => '.create']);
+
+            /**
+             * Actors read: lit un seul acteur
+             */
+            Route::get('/read/{id}', ['uses' => 'CategoriesController@read',
+                "as" => ".read"])
+                ->where('id', '[0-9]+');
+
+            /**
+             * Modifie un seul acteur
+             */
+            Route::get('/update/{id}', ['uses' => 'CategoriesController@update'])
+                ->where('id', '[0-9]+');
+
+            /**
+             * Supprimer un seul acteur
+             */
+            Route::get('/delete/{id}', ['uses' => 'CategoriesController@delete',
+                "as" => ".remove"])
+            ->where('id', '[0-9]+');
+
+        });
+
+
+        Route::group(['prefix' => 'movies', 'as' => 'movies'], function () {
+
+            /**
+             * Actors index: liste les acteurs
+             */
+            Route::get('/index/{bo?}/{visibilite?}/{distributeur?}', ['uses' => 'MoviesController@index',
+                'as' => '.index']);
+
+
+            /**
+             * Actors index: liste les acteurs
+             */
+            Route::post('/flymovie', ['uses' => 'MoviesController@flymovie',
+                'as' => '.flymovie']);
+
+
+            /**
+             *  Création d'un commentaire
+             */
+            Route::post('/comment/{id}', ['uses' => 'MoviesController@comment',
+                'as' => '.comment'])->where('id', '[0-9]+');
+
+            /**
+             *  Création d'un film
+             */
+            Route::get('/create', ['uses' => 'MoviesController@create',
+                'as' => '.create']);
+
+            /**
+             *  Création d'un film
+             */
+            Route::get('/trash', ['uses' => 'MoviesController@trash',
+                'as' => '.trash']);
+
+
+            /**
+             *  Création d'un film
+             */
+            Route::get('/restore/{id}', ['uses' => 'MoviesController@restore',
+                'as' => '.restore']) ->where('id', '[0-9]+');
+
+
+            /**
+             *  Création d'un film
+             */
+            Route::post('/store', ['uses' => 'MoviesController@store',
+                'as' => '.store']);
+
+            /**
+             * Création read: lit un seul acteur
+             */
+            Route::get('/read/{id}', ['uses' => 'MoviesController@read',
+                                     'as' => '.read'])
+                ->where('id', '[0-9]+');
+
+            /**
+             * Modifie un seul acteur
+             */
+            Route::get('/update/{id}', ['uses' => 'MoviesController@update'])
+                ->where('id', '[0-9]+');
+
+            /**
+             * Modifie un seul acteur
+             */
+            Route::get('/view/{id}', ['uses' => 'MoviesController@view', 'as' => '.view'])
+                ->where('id', '[0-9]+');
+
+            /**
+             * Supprimer un seul acteur
+             */
+            Route::get('/delete/{id}', ['uses' => 'MoviesController@remove', 'as' => '.remove'])
+                ->where('id', '[0-9]+');
+
+        });
+
+        /**
+         * Directors Routes
+         */
+
+
+        Route::group(['prefix' => 'directors'], function () {
+            Route::get('/index', ['uses' =>  'DirectorsController@index']);
+            Route::get('/read',  ['uses' =>  'DirectorsController@read']);
+            Route::get('/update', ['uses' => 'DirectorsController@update']);
+            Route::get('/delete', ['uses' => 'DirectorsController@delete']);
+            Route::get('/create', ['uses' => 'DirectorsController@create']);
+        });
+
+
 });
-
-
-
 
 
 /**

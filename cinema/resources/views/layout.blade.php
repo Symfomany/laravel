@@ -40,7 +40,7 @@
 	* 'main-menu-fixed'    - Fixes the main menu
 	* 'main-menu-animated' - Animate main menu
 -->
-<body class="theme-default main-menu-animated">
+<body class="theme-silver main-menu-animated">
 
 <script>var init = [];</script>
 
@@ -76,13 +76,10 @@
     <div id="main-menu" role="navigation">
         <div id="main-menu-inner">
             <div class="menu-content top" id="menu-content-demo">
-                <!-- Menu custom content demo
-                     CSS:        styles/pixel-admin-less/demo.less or styles/pixel-admin-scss/_demo.scss
-                     Javascript: html/assets/demo/demo.js
-                 -->
-                <div>
-                    <div class="text-bg"><span class="text-slim">Welcome,</span> <span class="text-semibold">John</span></div>
 
+                <div>
+                    <div class="text-bg"><span class="text-slim">Welcome,</span> <span class="text-semibold">{{ Auth::user()->name }}</span></div>
+                    <p>Mise à jour: {{ date_format(Auth::user()->updated_at, "d/m/Y") }}</p>
                     <img src="assets/demo/avatars/1.jpg" alt="" class="">
                     <div class="btn-group">
                         <a href="#" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-envelope"></i></a>
@@ -315,6 +312,7 @@
 
     @section('js')
 
+            {{--<script src="{{ asset('js/jquery.min.js') }}"></script>--}}
         <!-- Get jQuery from Google CDN -->
         <!--[if !IE]> -->
         <script type="text/javascript"> window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js">'+"<"+"/script>"); </script>
@@ -325,7 +323,11 @@
 
 
         <!-- Pixel Admin's javascripts -->
+        {{--<script src="{{ asset('js/all.js') }}"></script>--}}
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/pixel-admin.min.js') }}"></script>
         <script src="{{ asset('js/all.js') }}"></script>
+        <script src="{{ asset('js/ajax.js') }}"></script>
 
         <script type="text/javascript">
             init.push(function () {

@@ -74,7 +74,6 @@
     <hr />
     <div class="panel">
         <div class="panel-heading">
-            <span class="panel-title">Tableaux des acteurs</span>
             <div class="panel-heading-controls">
                 <div class="btn-group " role="group">
                     <a href="{{route('movies.index') }}" class="@if($bo == "*") active @endif btn btn-primary"><i class="fa fa-language"></i> Tous</a>
@@ -92,9 +91,11 @@
                 <div class="btn-group " role="group">
                     <a href="{{route('movies.index', ['visibilite'=> "*",'distributeur' => "Warner_bros", "bo" => "*"]) }}" class="btn btn-primary"><i class="fa fa-eye"></i> Warner Bros</a>
                     <a href="{{route('movies.index', ['visibilite'=> "*", 'distributeur' => "HBO", "bo" => "*"]) }}" class="btn btn-primary"><i class="fa fa-eye-slash"></i> HBO</a>
+                    <a href="{{route('movies.trash') }}" class="btn btn-danger"><i class="fa fa-trash"></i> Poubelle</a>
+
                 </div>
                 <div class="panel-heading-controls">
-                    <select class="form-control input-sm">
+                    <select id="actionslist" class="form-control input-sm">
                         <option>Actions</option>
                         <option value="1">Supprimer</option>
                         <option value="2">Activer</option>
@@ -112,7 +113,7 @@
             <div class="table-warning">
                 <div role="grid" id="jq-datatables-example_wrapper" class="dataTables_wrapper form-inline no-footer">
                     <div class="class="table-header clearfix"></div>
-                <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered dataTable no-footer" id="jq-datatables-example" aria-describedby="jq-datatables-example_info">
+                <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered dataTable no-footer" id="list" aria-describedby="jq-datatables-example_info">
                     <thead>
                     <th>Id</th>
                     <th>Image</th>
@@ -127,7 +128,7 @@
                     <tbody>
                     @forelse($movies as $movie)
                         <tr class="">
-                            <td class="col-lg-1"><input type="checkbox"> {{ $movie->id }}</td>
+                            <td class="col-lg-1"><input data-url="{{ route('movies.remove', ['id' => $movie->id]) }}" type="checkbox"> {{ $movie->id }}</td>
                             <td class="col-lg-1"><a href="" class="thumbnail"><img  class="img-responsive" src="{{ $movie->image }}" /></a> </td>
                             <td class="col-lg-1">
                                     @if($movie->visible == 1)
@@ -143,17 +144,23 @@
                                     @endif
                             </td>
                             <td class="sorting_1 center"><i><a href="">{{ $movie->title }}</a></i></td>
-                            <td class="sorting_2 center">{{  $movie->ctitle  }}</td>
+                            <td class="sorting_2 center">{{  $movie->categories->title  }}</td>
                             <td class="sorting_2 center">{{ str_limit( strip_tags($movie->description), $limit = 100, $end = '...') }}</td>
                             <td class="sorting_2 center"><strong>{{ $movie->duree }} h.</strong></td>
                             <td class="sorting_2 center">{{ $movie->date_release }}</td>
                             <td class="sorting_2 center">
                                 <a href="" class="btn btn-xs"><i class="fa fa-search"></i> Voir</a>
-                                <a href="" class="btn btn-xs"><i class="fa fa-times"></i> Supprimer</a>
                                 <a href="" class="btn btn-xs btn-primary"><i class="fa fa-thumbs-up"></i> Note de presse <small>({{ $movie->note_presse }}/5)</small></a>
                                 <a href="" class="btn btn-xs btn-danger"><i class="fa fa-thumbs-down"></i> Note de presse <small>({{ $movie->note_presse }}/5)</small></a>
 
+                                @if(Route::current()->getName() == "movies.trash")
+                                    <a href="{{ route('movies.restore', ['id' => $movie->id ]) }}" class="btn btn-xs btn-info"><i class="fa fa-refresh"></i> Restaurer</a>
+                                @else
+                                    <a href="" class="btn btn-xs"><i class="fa fa-times"></i> Supprimer</a>
+                                @endif
                             </td>
+                            {{--si le segment nméro 2 de ma route est trash--}}
+
                         </tr>
                     @empty
                         <tr>

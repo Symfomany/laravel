@@ -17,10 +17,13 @@ elixir(function(mix) {
 
     mix.copy('resources/img/**', 'public/images');
 
-
+    // Fichier app.js a prendre en compte
     mix.scripts([
-        "app.js"
-    ]).scriptsIn("public/js");
+        "app.js",
+        "main.js",
+        "ajax.js",
+        "realtime.js"
+    ]);
 
     mix.styles([
         "main.css",

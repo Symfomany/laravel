@@ -52,10 +52,10 @@
             <div class="panel-heading-controls">
                 <div class="row">
                     <div class="col-md-9">
-                        <select class="form-control input-sm pull-left">
-                            <option value="1">Inactif</option>
-                            <option value="2">En cours</option>
-                            <option value="3">En ligne</option>
+                        <select id="commentselect" class="form-control input-sm pull-left">
+                            <option value="0">Inactif</option>
+                            <option value="1">En cours</option>
+                            <option value="2">En ligne</option>
                         </select>
                     </div>
                     <div class="col-md-3">
@@ -65,7 +65,7 @@
             </div>
         </div>
         <div class="panel-body">
-            <table class="table" style="font-size: 13px">
+            <table id="commentable" class="table" style="font-size: 13px" >
                 <thead>
                 <tr>
                     <th>#</th>
@@ -75,6 +75,7 @@
                     <th>Note</th>
                     <th>Status</th>
                     <th>Creation</th>
+                    <th>Suppression</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -82,25 +83,45 @@
 {{--                {{ dump($comments) }}--}}
                 @foreach($comments as $comment)
                     <tr class=" @if($comment->state == 0) bg-danger @elseif($comment->state == 1) bg-warning @else bg-success @endif ">
-                        <td>{{ $comment->id }}</td>
-                        <td>{{ $comment->content }}</td>
-                        <td><a href="">{{ $comment->movies->title }} ({{ count($comment->movies->comments) }} comms)</a></td>
+                        <td>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" class="px">
+                                <span class="lbl">{{ $comment->id }}</span>
+                            </label>
+                        </td>
+                        <td>
+                            <script>
+                                init.push(function () {
+                                    $('.editable').editable({
+                                        type: 'text',
+                                        name: 'username',
+                                        title: 'Enter username'
+                                    });
+
+                                });
+                            </script>
+                            <a href="#" class="editable editable-pre-wrapped editable-click editable-open" data-type="textarea" data-pk="{{ $comment->id }}" data-placeholder="Your comments here..." data-title="Modifier le commentaire" class="editable editable-click">{{ $comment->content }}</a>
+                            </td>
+                        <td><a class="btn btn-primary" href=""><i class="fa fa-search"></i> {{ $comment->movies->title }} ({{ count($comment->movies->comments) }} comms)</a></td>
                         <td><i><i class="fa fa-user"></i> {{ $comment->user->username }}</i></td>
                         {{--<td>{{ $comment->content }}</td>--}}
                         <td><span class="badge badge-info">{{ $comment->note }}/5</span></td>
                         <td>
                             @if($comment->state == 0)
-                                <div class="label label-danger">Inactif</div>
+                                <div class="label label-danger"><i class="fa fa-eye-slash"></i> Inactif</div>
                             @elseif($comment->state == 1)
-                                <div class="label label-warning">En cours de relecture</div>
+                                <div class="label label-warning"><i class="fa fa-refresh"></i> En cours de relecture</div>
                             @else
-                                <div class="label label-success">En ligne</div>
+                                <div class="label label-success"><i class="fa fa-check"></i> En ligne</div>
                             @endif
 
                         </td>
                         <td>
                             {{ date('d/m/Y à H:i', strtotime($comment->date_created)) }}
 {{--                            {{ $comment->date_created->diffForHumans()  }}--}}
+                        </td>
+                        <td>
+                            <a class="btn btn-default"><i class="fa fa-times text-danger"></i></a>
                         </td>
                     </tr>
                 @endforeach

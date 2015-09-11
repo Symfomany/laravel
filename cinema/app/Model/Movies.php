@@ -4,14 +4,20 @@ namespace App\Model;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 
+
 class Movies extends Model{
+
+    use SoftDeletes;
+
 
     protected $table = 'movies';
 
     public $timestamps = false;
 
+    protected $dates = ['date_deleted'];
 
     /**
      * Get ALl Movies Cover and visible

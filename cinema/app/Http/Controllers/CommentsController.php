@@ -23,6 +23,16 @@ class CommentsController extends Controller{
         );
     }
 
+    /**
+     * Page Index
+     */
+    public function ajax(){
+        $comments = Comments::orderBy('id', 'desc')->get();
+
+        return view('Comments/ajax',
+            ['comments' => $comments]
+        );
+    }
 
 }
 

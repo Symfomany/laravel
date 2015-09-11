@@ -11,6 +11,8 @@ class Comments extends Model{
 
     public $timestamps = false;
 
+    protected $fillable = ['content', 'movies_id', 'date_created', 'user_id'];
+
 
     public function movies()
     {

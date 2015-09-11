@@ -133,7 +133,7 @@
 
 
     <div class="">
-         <a href="" class="pull-right btn btn-success btn-medium"><i class="fa fa-plus"></i> Créer un acteur</a>
+         <a href="{{ route('actors.create' ) }}" class="pull-right btn btn-success btn-medium"><i class="fa fa-plus"></i> Créer un acteur</a>
         <br />
     </div>
     <hr />
@@ -147,7 +147,7 @@
             <div class="table-primary">
                 <div role="grid" id="jq-datatables-example_wrapper" class="dataTables_wrapper form-inline no-footer">
                     <div class="class="table-header clearfix"></div>
-                        <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered dataTable no-footer" id="jq-datatables-example" aria-describedby="jq-datatables-example_info">
+                        <table id="list" cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered dataTable no-footer" aria-describedby="jq-datatables-example_info">
                             <thead>
                                 <th>Images</th>
                                 <th>Nom</th>
@@ -173,8 +173,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="table-footer clearfix">
-                         </div>
+                        <div class="table-footer clearfix"></div>
             </div>
         </div>
     </div>

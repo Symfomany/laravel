@@ -27,7 +27,7 @@
                 <div>
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="#"><i class="fa fa-home"></i> Home</a>
+                            <a href="{{ route('home') }}"><i class="fa fa-home"></i> Home</a>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-film"></i> Film</a>
@@ -287,19 +287,19 @@
                                 </form>
                             </li>
 
-                            {{--<li class="dropdown">--}}
-                                {{--<a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown">--}}
-                                    {{--<img src="assets/demo/avatars/1.jpg" alt="">--}}
-                                    {{--<span>John Doe</span>--}}
-                                {{--</a>--}}
-                                {{--<ul class="dropdown-menu">--}}
-                                    {{--<li><a href="#"><span class="label label-warning pull-right">New</span>Profile</a></li>--}}
-                                    {{--<li><a href="#"><span class="badge badge-primary pull-right">New</span>Account</a></li>--}}
-                                    {{--<li><a href="#"><i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;Settings</a></li>--}}
-                                    {{--<li class="divider"></li>--}}
-                                    {{--<li><a href="pages-signin.html"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Log Out</a></li>--}}
-                                {{--</ul>--}}
-                            {{--</li>--}}
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown">
+                                    <img src="assets/demo/avatars/1.jpg" alt="">
+                                    <span>{{ Auth::user()->name }}</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#"><span class="label label-warning pull-right">New</span>Profile</a></li>
+                                    <li><a href="#"><span class="badge badge-primary pull-right">New</span>Account</a></li>
+                                    <li><a href="#"><i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;Settings</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="{{ url('auth/logout') }}"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Log Out</a></li>
+                                </ul>
+                            </li>
                         </ul> <!-- / .navbar-nav -->
                     </div> <!-- / .right -->
                 </div>
