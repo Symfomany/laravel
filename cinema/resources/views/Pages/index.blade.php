@@ -5,9 +5,17 @@
 @section('js')
     @parent
     <script src="{{ asset('js/realtime.js') }}"> </script>
+
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script src="{{ asset('js/gmap.js') }}"> </script>
 @endsection
 
 @section('content')
+
+    <div class="row">
+
+        <div id="map" style="width: 100%; height: 350px"></div>
+    </div>
 
     <div class="row">
         <div class="pull-right">
@@ -311,6 +319,50 @@
 
     <div class="row">
 
+        <div class="panel widget-threads">
+            <div class="panel-heading">
+                <span class="panel-title"><i class="panel-title-icon fa fa-comments-o"></i>Recommandations cinémas</span>
+            </div>
+            <div class="panel-body">
+
+                <div class="thread">
+                    <img src="http://www.alpes4science.org/userfiles/logo%20pathe%201_jpg.jpg" alt="" class="thread-avatar">
+                    <div class="thread-body">
+                        <span class="thread-time">14h</span>
+                        <a href="#" class="thread-title">Un film très émouvant</a>
+                        <p>Un film superbe avec quelques longeurs mais vraiment sympa. Je recommande :)</p>
+                        <div class="thread-info">Commenté par <a href="#" title="">Pathé</a> sur <a href="#" title="">La Ligne Verte</a></div>
+                    </div> <!-- / .thread-body -->
+                </div> <!-- / .thread -->
+
+                <div class="thread">
+                    <img src="http://www.ugc.fr/statique/images/logo-ugc.png" alt="" class="thread-avatar">
+                    <div class="thread-body">
+                        <span class="thread-time">14h</span>
+                        <a href="#" class="thread-title">Superbe chef d'oeuvre</a>
+                        <p>Très belle oeuvre de Tarantino je recommade</p>
+                        <div class="thread-info">Commenté par <a href="#" title="">UGC</a> sur <a href="#" title="">Gran Torino</a></div>
+                    </div> <!-- / .thread-body -->
+                </div> <!-- / .thread -->
+
+                <div class="thread">
+                    <img src="http://legrandrex.cotecine.fr/image/logo.png?1368434207" alt="" class="thread-avatar">
+                    <div class="thread-body">
+                        <span class="thread-time">14h</span>
+                        <a href="#" class="thread-title">Beau film avec qqs clins d'oeil</a>
+                        <p>Film à voir pour se divertir</p>
+                        <div class="thread-info">Commenté par <a href="#" title="">Le Grand Rex</a> sur <a href="#" title="">Man Steel</a></div>
+                    </div> <!-- / .thread-body -->
+                </div> <!-- / .thread -->
+
+
+            </div> <!-- / .panel-body -->
+        </div>
+    </div>
+
+
+    <div class="row">
+
         <!-- 12. $NEW_USERS_TABLE ==========================================================================
 
                     New users table
@@ -402,7 +454,7 @@
 
             <div class="panel widget-tasks panel-dark-gray">
                 <div class="panel-heading">
-                    <span class="panel-title"><i class="panel-title-icon fa fa-tasks"></i>Recent tasks</span>
+                    <span class="panel-title"><i class="panel-title-icon fa fa-tasks"></i>Taches Récentes</span>
                     <div class="panel-heading-controls">
                         <button class="btn btn-xs btn-primary btn-outline dark" id="clear-completed-tasks"><i class="fa fa-eraser text-success"></i> Clear completed tasks</button>
                     </div>
@@ -416,7 +468,7 @@
                         <div class="action-checkbox">
                             <label class="px-single"><input type="checkbox" name="" value="" class="px"><span class="lbl"></span></label>
                         </div>
-                        <a href="#" class="task-title">A very important task<span>1 hour left</span></a>
+                        <a href="#" class="task-title">Mettre à jour la fiche Man of Style<span>1 hour left</span></a>
                     </div> <!-- / .task -->
 
                     <div class="task completed">
@@ -425,7 +477,7 @@
                         <div class="action-checkbox">
                             <label class="px-single"><input type="checkbox" name="" value="" class="px" checked="checked"><span class="lbl"></span></label>
                         </div>
-                        <a href="#" class="task-title">A very important task<span>58 minutes left</span></a>
+                        <a href="#" class="task-title">Modérer les commentaires inutile de Django <span>58 minutes left</span></a>
                     </div> <!-- / .task -->
 
                     <div class="task completed">
@@ -433,7 +485,7 @@
                         <div class="action-checkbox">
                             <label class="px-single"><input type="checkbox" name="" value="" class="px" checked="checked"><span class="lbl"></span></label>
                         </div>
-                        <a href="#" class="task-title">A regular task</a>
+                        <a href="#" class="task-title">Créer une fiche The Hobbit</a>
                     </div> <!-- / .task -->
 
                     <div class="task">
@@ -441,7 +493,16 @@
                         <div class="action-checkbox">
                             <label class="px-single"><input type="checkbox" name="" value="" class="px"><span class="lbl"></span></label>
                         </div>
-                        <a href="#" class="task-title">A regular task</a>
+                        <a href="#" class="task-title">Modérer les commentaires The Hobbit 2</a>
+                    </div> <!-- / .task -->
+
+                    <div class="task completed">
+                        <span class="label label-warning pull-right">High</span>
+                        <div class="fa fa-arrows-v task-sort-icon"></div>
+                        <div class="action-checkbox">
+                            <label class="px-single"><input type="checkbox" name="" value="" class="px" checked="checked"><span class="lbl"></span></label>
+                        </div>
+                        <a href="#" class="task-title">Créer des séances pour le film Inglorious Basterd<span>58 minutes left</span></a>
                     </div> <!-- / .task -->
 
                     <div class="task">
@@ -449,25 +510,7 @@
                         <div class="action-checkbox">
                             <label class="px-single"><input type="checkbox" name="" value="" class="px"><span class="lbl"></span></label>
                         </div>
-                        <a href="#" class="task-title">A regular task</a>
-                    </div> <!-- / .task -->
-
-                    <div class="task">
-                        <span class="label pull-right">Low</span>
-                        <div class="fa fa-arrows-v task-sort-icon"></div>
-                        <div class="action-checkbox">
-                            <label class="px-single"><input type="checkbox" name="" value="" class="px"><span class="lbl"></span></label>
-                        </div>
-                        <a href="#" class="task-title">An unimportant task</a>
-                    </div> <!-- / .task -->
-
-                    <div class="task">
-                        <span class="label pull-right">Low</span>
-                        <div class="fa fa-arrows-v task-sort-icon"></div>
-                        <div class="action-checkbox">
-                            <label class="px-single"><input type="checkbox" name="" value="" class="px"><span class="lbl"></span></label>
-                        </div>
-                        <a href="#" class="task-title">An unimportant task</a>
+                        <a href="#" class="task-title">Modérer les commentaires The Hobbit 2</a>
                     </div> <!-- / .task -->
 
                     <div class="task">
@@ -475,17 +518,9 @@
                         <div class="action-checkbox">
                             <label class="px-single"><input type="checkbox" name="" value="" class="px"><span class="lbl"></span></label>
                         </div>
-                        <a href="#" class="task-title">A regular task</a>
+                        <a href="#" class="task-title">Modérer les commentaires The Hobbit 2</a>
                     </div> <!-- / .task -->
 
-                    <div class="task">
-                        <span class="label pull-right">Low</span>
-                        <div class="fa fa-arrows-v task-sort-icon"></div>
-                        <div class="action-checkbox">
-                            <label class="px-single"><input type="checkbox" name="" value="" class="px"><span class="lbl"></span></label>
-                        </div>
-                        <a href="#" class="task-title">An unimportant task</a>
-                    </div> <!-- / .task -->
                 </div> <!-- / .panel-body -->
             </div> <!-- / .panel -->
         </div>

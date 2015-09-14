@@ -6,7 +6,8 @@
   ],
   "dependencies": {
     "get-size": "~1.2.2",
-    "eventEmitter": "~4.2.11"
+    "eventEmitter": "~4.2.11",
+    "moment": "*"
   },
   "keywords": [
     "css",

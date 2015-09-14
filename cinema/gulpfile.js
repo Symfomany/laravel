@@ -25,6 +25,11 @@ elixir(function(mix) {
         "realtime.js"
     ]);
 
+    mix.scripts([
+        "gmap.js"
+    ], 'public/js/gmap.js');
+
+
     mix.styles([
         "main.css",
         "index.css"
