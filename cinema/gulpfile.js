@@ -24,6 +24,9 @@ elixir(function(mix) {
         "ajax.js",
         "realtime.js"
     ]);
+    mix.scripts([
+        "chart.js"
+    ], 'public/js/chart.js');
 
     mix.scripts([
         "gmap.js"

@@ -16,29 +16,29 @@
             {{ csrf_field() }}
 
             <div class="panel-body">
-                <div class="form-group">
-                    <input type="text" name="email" value="{{ Input::old('email') }}" id="email" class="form-control input-lg" placeholder="Nom">
-                </div>
-                <div class="form-group">
-                    <input type="text" name="email" value="{{ Input::old('email') }}" id="email" class="form-control input-lg" placeholder="Prénom">
-                </div>
-                <div class="form-group">
-                    <input type="text" name="email" value="{{ Input::old('email') }}" id="email" class="form-control input-lg" placeholder="Ville">
-                </div>
-                <div class="form-group">
-                    <input type="url" name="email" value="{{ Input::old('email') }}" id="email" class="form-control input-lg" placeholder="http://">
-                </div>
-                <div class="form-group">
-                    <textarea name="email" value="{{ Input::old('email') }}" id="email" class="form-control input-lg" placeholder="Description"></textarea>
+                {{--<div class="form-group">--}}
+                    <input type="text" name="name" value="{{ Input::old('name') }}" id="email" class="form-control input-lg" placeholder="Nom">
+                {{--</div>--}}
+                {{--<div class="form-group">--}}
+                    {{--<input type="text" name="email" value="{{ Input::old('email') }}" id="email" class="form-control input-lg" placeholder="Prénom">--}}
+                {{--</div>--}}
+                {{--<div class="form-group">--}}
+                    {{--<input type="text" name="email" value="{{ Input::old('email') }}" id="email" class="form-control input-lg" placeholder="Ville">--}}
+                {{--</div>--}}
+                {{--<div class="form-group">--}}
+                    {{--<input type="url" name="email" value="{{ Input::old('email') }}" id="email" class="form-control input-lg" placeholder="http://">--}}
+                {{--</div>--}}
+                {{--<div class="form-group">--}}
+                    {{--<textarea name="email" value="{{ Input::old('email') }}" id="email" class="form-control input-lg" placeholder="Description"></textarea>--}}
                 </div>
                 <div class="form-group">
                     <input type="email" name="email" value="{{ Input::old('email') }}" id="email" class="form-control input-lg" placeholder="Email">
                 </div>
                 <div class="form-group">
-                    <input type="email" name="email" value="{{ Input::old('email') }}" id="email" class="form-control input-lg" placeholder="Mot de passe">
+                    <input type="password" name="password" value="{{ Input::old('password') }}" id="email" class="form-control input-lg" placeholder="Mot de passe">
                 </div>
                 <div class="form-group">
-                    <input type="email" name="email" value="{{ Input::old('email') }}" id="email" class="form-control input-lg" placeholder="Confirmation de Mot de passe">
+                    <input type="password" name="password_confirmation" value="{{ Input::old('password') }}" id="email" class="form-control input-lg" placeholder="Confirmation de Mot de passe">
                 </div>
             </div>
             <div class="panel-footer text-right">

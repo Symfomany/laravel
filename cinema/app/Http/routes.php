@@ -14,6 +14,9 @@ Route::get('/contact', ['as' => 'contact','uses' => 'PagesController@contact'
 
 
 
+
+
+
 /**
  * Routing implicit
  * ou le préfix sera users et le contrilleurs et mes routes seront devinés
@@ -62,6 +65,7 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 
+Route::controller('members', 'MembersController');
 
 
 
@@ -69,7 +73,16 @@ Route::group([ 'prefix' => 'admin',
     'middleware' => 'auth'
 ], function () {
 
-        Route::get('/', ['as' => 'home','uses' => 'PagesController@index']);
+
+
+    //import implicite du routing selon le controlleur
+    Route::controller('api', 'ApiController');
+
+
+
+    Route::get('/', ['as' => 'home','uses' => 'PagesController@index']);
+        Route::get('/advanced', ['as' => 'advanced','uses' => 'PagesController@indexAdvanced']);
+        Route::get('/professional', ['as' => 'professional','uses' => 'PagesController@indexProfessional']);
 
 
 

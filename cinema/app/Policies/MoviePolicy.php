@@ -17,7 +17,7 @@ class MoviePolicy
      * @param  \App\Post  $post
      * @return bool
      */
-    public function update(User $user, Movies $movie)
+    public function checkmovie(User $user, Movies $movie)
     {
         return $user->id === $movie->administrators_id;
     }

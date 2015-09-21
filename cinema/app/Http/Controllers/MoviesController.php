@@ -8,6 +8,7 @@ use App\Model\Movies;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
@@ -68,6 +69,11 @@ class MoviesController extends Controller
      * @return \Illuminate\View\View
      */
     public function index($bo="*", $visibilite="*", $distributeur="*"){
+
+
+        if (Gate::denies('superadmin')) {
+            abort(403);
+        }
 
 
         //methode  numéro 2 pour créer une requete Query Builder
@@ -216,6 +222,12 @@ class MoviesController extends Controller
 
         // supprimer un acteur
         $movie = Movies::find($id);
+
+
+        if (Gate::denies('hasmovie', $movie)) {
+            abort(403);
+        }
+
         $movie->delete();
     }
 

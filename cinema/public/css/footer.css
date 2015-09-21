@@ -1,22 +1,2 @@
-#content-wrapper {
-  min-height: 700px; }
-
-footer {
-  width: 100%;
-  height: 200px;
-  background-color: #666;
-  padding: 20px;
-  text-align: center; }
-  footer ul {
-    width: 700px;
-    margin: 0 auto; }
-    footer ul li {
-      float: left; }
-      footer ul li a {
-        display: block;
-        width: 100px;
-        margin: 10px;
-        font-size: 12px;
-        color: white; }
-
+#content-wrapper{min-height:700px}footer{width:100%;height:200px;background-color:#666;padding:20px;text-align:center}footer ul{width:700px;margin:0 auto}footer ul li{float:left}footer ul li a{display:block;width:75pt;margin:10px;font-size:9pt;color:#fff}
 /*# sourceMappingURL=footer.css.map */

@@ -54,24 +54,34 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-video-camera"></i> Réalisateurs</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-anchor"></i> Plus</a>
                             <ul class="dropdown-menu">
-                                <li><a href="#"><i class="fa fa-search"></i> Voir les catégories</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-video-camera"></i> Réalisateurs</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#"><i class="fa fa-search"></i> Voir les catégories</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#"><i class="fa fa-plus"></i> Créer une catégorie</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users"></i> Utilisateurs</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#"><i class="fa fa-search"></i> Voir les catégories</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#"><i class="fa fa-plus"></i> Créer une catégorie</a></li>
+                                    </ul>
+                                </li>
+
+                                <li><a href="{{ route('actors.index')  }}"><i class="fa fa-search"></i> Voir les acteurs</a></li>
                                 <li class="divider"></li>
-                                <li><a href="#"><i class="fa fa-plus"></i> Créer une catégorie</a></li>
+                                <li><a href="{{ route('actors.create')  }}"><i class="fa fa-plus"></i> Créer un acteur</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users"></i> Utilisateurs</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#"><i class="fa fa-search"></i> Voir les catégories</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#"><i class="fa fa-plus"></i> Créer une catégorie</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="{{ route('comments.index') }}"><i class="fa fa-comments"></i> Commentaires</a>
-                        </li>
+
+                        {{--<li>--}}
+                            {{--<a href="{{ route('comments.index') }}"><i class="fa fa-comments"></i> Commentaires</a>--}}
+                        {{--</li>--}}
 
 
                     </ul> <!-- / .navbar-nav -->
@@ -79,207 +89,54 @@
                     <div class="right clearfix">
                         <ul class="nav navbar-nav pull-right right-navbar-nav">
 
-                            {{--<!-- 3. $NAVBAR_ICON_BUTTONS =======================================================================--}}
 
-                                                        {{--Navbar Icon Buttons--}}
+                            <li class="nav-icon-btn nav-icon-btn-danger dropdown">
+                                <a href="#notifications" class="dropdown-toggle" data-toggle="dropdown">
+                                    <span class="label">{{ \App\Model\Notifications::count() }}</span>
+                                    <i class="nav-icon fa fa-bullhorn"></i>
+                                    <span class="small-screen-text">Notifications</span>
+                                </a>
 
-                                                        {{--NOTE: .nav-icon-btn triggers a dropdown menu on desktop screens only. On small screens .nav-icon-btn acts like a hyperlink.--}}
+                                <!-- NOTIFICATIONS -->
 
-                                                        {{--Classes:--}}
-                                                        {{--* 'nav-icon-btn-info'--}}
-                                                        {{--* 'nav-icon-btn-success'--}}
-                                                        {{--* 'nav-icon-btn-warning'--}}
-                                                        {{--* 'nav-icon-btn-danger'--}}
-                            {{---->--}}
-                            {{--<li class="nav-icon-btn nav-icon-btn-danger dropdown">--}}
-                                {{--<a href="#notifications" class="dropdown-toggle" data-toggle="dropdown">--}}
-                                    {{--<span class="label">5</span>--}}
-                                    {{--<i class="nav-icon fa fa-bullhorn"></i>--}}
-                                    {{--<span class="small-screen-text">Notifications</span>--}}
-                                {{--</a>--}}
+                                <!-- Javascript -->
+                                <script>
+                                    init.push(function () {
+                                        $('#main-navbar-notifications').slimScroll({ height: 250 });
+                                    });
+                                </script>
+                                <!-- / Javascript -->
 
-                                {{--<!-- NOTIFICATIONS -->--}}
+                                <div class="dropdown-menu widget-notifications no-padding" style="width: 300px">
+                                    <div class="notifications-list" id="main-navbar-notifications">
 
-                                {{--<!-- Javascript -->--}}
-                                {{--<script>--}}
-                                    {{--init.push(function () {--}}
-                                        {{--$('#main-navbar-notifications').slimScroll({ height: 250 });--}}
-                                    {{--});--}}
-                                {{--</script>--}}
-                                {{--<!-- / Javascript -->--}}
-
-                                {{--<div class="dropdown-menu widget-notifications no-padding" style="width: 300px">--}}
-                                    {{--<div class="notifications-list" id="main-navbar-notifications">--}}
-
-                                        {{--<div class="notification">--}}
-                                            {{--<div class="notification-title text-danger">SYSTEM</div>--}}
-                                            {{--<div class="notification-description"><strong>Error 500</strong>: Syntax error in index.php at line <strong>461</strong>.</div>--}}
-                                            {{--<div class="notification-ago">12h ago</div>--}}
-                                            {{--<div class="notification-icon fa fa-hdd-o bg-danger"></div>--}}
-                                        {{--</div> <!-- / .notification -->--}}
-
-                                        {{--<div class="notification">--}}
-                                            {{--<div class="notification-title text-info">STORE</div>--}}
-                                            {{--<div class="notification-description">You have <strong>9</strong> new orders.</div>--}}
-                                            {{--<div class="notification-ago">12h ago</div>--}}
-                                            {{--<div class="notification-icon fa fa-truck bg-info"></div>--}}
-                                        {{--</div> <!-- / .notification -->--}}
-
-                                        {{--<div class="notification">--}}
-                                            {{--<div class="notification-title text-default">CRON DAEMON</div>--}}
-                                            {{--<div class="notification-description">Job <strong>"Clean DB"</strong> has been completed.</div>--}}
-                                            {{--<div class="notification-ago">12h ago</div>--}}
-                                            {{--<div class="notification-icon fa fa-clock-o bg-default"></div>--}}
-                                        {{--</div> <!-- / .notification -->--}}
-
-                                        {{--<div class="notification">--}}
-                                            {{--<div class="notification-title text-success">SYSTEM</div>--}}
-                                            {{--<div class="notification-description">Server <strong>up</strong>.</div>--}}
-                                            {{--<div class="notification-ago">12h ago</div>--}}
-                                            {{--<div class="notification-icon fa fa-hdd-o bg-success"></div>--}}
-                                        {{--</div> <!-- / .notification -->--}}
-
-                                        {{--<div class="notification">--}}
-                                            {{--<div class="notification-title text-warning">SYSTEM</div>--}}
-                                            {{--<div class="notification-description"><strong>Warning</strong>: Processor load <strong>92%</strong>.</div>--}}
-                                            {{--<div class="notification-ago">12h ago</div>--}}
-                                            {{--<div class="notification-icon fa fa-hdd-o bg-warning"></div>--}}
-                                        {{--</div> <!-- / .notification -->--}}
-
-                                    {{--</div> <!-- / .notifications-list -->--}}
-                                    {{--<a href="#" class="notifications-link">MORE NOTIFICATIONS</a>--}}
-                                {{--</div> <!-- / .dropdown-menu -->--}}
-                            {{--</li>--}}
-                            {{--<li class="nav-icon-btn nav-icon-btn-success dropdown">--}}
-                                {{--<a href="#messages" class="dropdown-toggle" data-toggle="dropdown">--}}
-                                    {{--<span class="label">10</span>--}}
-                                    {{--<i class="nav-icon fa fa-envelope"></i>--}}
-                                    {{--<span class="small-screen-text">Income messages</span>--}}
-                                {{--</a>--}}
-
-                                {{--<!-- MESSAGES -->--}}
-
-                                {{--<!-- Javascript -->--}}
-                                {{--<script>--}}
-                                    {{--init.push(function () {--}}
-                                        {{--$('#main-navbar-messages').slimScroll({ height: 250 });--}}
-                                    {{--});--}}
-                                {{--</script>--}}
-                                {{--<!-- / Javascript -->--}}
-
-                                {{--<div class="dropdown-menu widget-messages-alt no-padding" style="width: 300px;">--}}
-                                    {{--<div class="messages-list" id="main-navbar-messages">--}}
-
-                                        {{--<div class="message">--}}
-                                            {{--<img src="assets/demo/avatars/2.jpg" alt="" class="message-avatar">--}}
-                                            {{--<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>--}}
-                                            {{--<div class="message-description">--}}
-                                                {{--from <a href="#">Robert Jang</a>--}}
-                                                {{--&nbsp;&nbsp;·&nbsp;&nbsp;--}}
-                                                {{--2h ago--}}
-                                            {{--</div>--}}
-                                        {{--</div> <!-- / .message -->--}}
-
-                                        {{--<div class="message">--}}
-                                            {{--<img src="assets/demo/avatars/3.jpg" alt="" class="message-avatar">--}}
-                                            {{--<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>--}}
-                                            {{--<div class="message-description">--}}
-                                                {{--from <a href="#">Michelle Bortz</a>--}}
-                                                {{--&nbsp;&nbsp;·&nbsp;&nbsp;--}}
-                                                {{--2h ago--}}
-                                            {{--</div>--}}
-                                        {{--</div> <!-- / .message -->--}}
-
-                                        {{--<div class="message">--}}
-                                            {{--<img src="assets/demo/avatars/4.jpg" alt="" class="message-avatar">--}}
-                                            {{--<a href="#" class="message-subject">Lorem ipsum dolor sit amet.</a>--}}
-                                            {{--<div class="message-description">--}}
-                                                {{--from <a href="#">Timothy Owens</a>--}}
-                                                {{--&nbsp;&nbsp;·&nbsp;&nbsp;--}}
-                                                {{--2h ago--}}
-                                            {{--</div>--}}
-                                        {{--</div> <!-- / .message -->--}}
-
-                                        {{--<div class="message">--}}
-                                            {{--<img src="assets/demo/avatars/5.jpg" alt="" class="message-avatar">--}}
-                                            {{--<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>--}}
-                                            {{--<div class="message-description">--}}
-                                                {{--from <a href="#">Denise Steiner</a>--}}
-                                                {{--&nbsp;&nbsp;·&nbsp;&nbsp;--}}
-                                                {{--2h ago--}}
-                                            {{--</div>--}}
-                                        {{--</div> <!-- / .message -->--}}
-
-                                        {{--<div class="message">--}}
-                                            {{--<img src="assets/demo/avatars/2.jpg" alt="" class="message-avatar">--}}
-                                            {{--<a href="#" class="message-subject">Lorem ipsum dolor sit amet.</a>--}}
-                                            {{--<div class="message-description">--}}
-                                                {{--from <a href="#">Robert Jang</a>--}}
-                                                {{--&nbsp;&nbsp;·&nbsp;&nbsp;--}}
-                                                {{--2h ago--}}
-                                            {{--</div>--}}
-                                        {{--</div> <!-- / .message -->--}}
-
-                                        {{--<div class="message">--}}
-                                            {{--<img src="assets/demo/avatars/2.jpg" alt="" class="message-avatar">--}}
-                                            {{--<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a>--}}
-                                            {{--<div class="message-description">--}}
-                                                {{--from <a href="#">Robert Jang</a>--}}
-                                                {{--&nbsp;&nbsp;·&nbsp;&nbsp;--}}
-                                                {{--2h ago--}}
-                                            {{--</div>--}}
-                                        {{--</div> <!-- / .message -->--}}
-
-                                        {{--<div class="message">--}}
-                                            {{--<img src="assets/demo/avatars/3.jpg" alt="" class="message-avatar">--}}
-                                            {{--<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>--}}
-                                            {{--<div class="message-description">--}}
-                                                {{--from <a href="#">Michelle Bortz</a>--}}
-                                                {{--&nbsp;&nbsp;·&nbsp;&nbsp;--}}
-                                                {{--2h ago--}}
-                                            {{--</div>--}}
-                                        {{--</div> <!-- / .message -->--}}
-
-                                        {{--<div class="message">--}}
-                                            {{--<img src="assets/demo/avatars/4.jpg" alt="" class="message-avatar">--}}
-                                            {{--<a href="#" class="message-subject">Lorem ipsum dolor sit amet.</a>--}}
-                                            {{--<div class="message-description">--}}
-                                                {{--from <a href="#">Timothy Owens</a>--}}
-                                                {{--&nbsp;&nbsp;·&nbsp;&nbsp;--}}
-                                                {{--2h ago--}}
-                                            {{--</div>--}}
-                                        {{--</div> <!-- / .message -->--}}
-
-                                        {{--<div class="message">--}}
-                                            {{--<img src="assets/demo/avatars/5.jpg" alt="" class="message-avatar">--}}
-                                            {{--<a href="#" class="message-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a>--}}
-                                            {{--<div class="message-description">--}}
-                                                {{--from <a href="#">Denise Steiner</a>--}}
-                                                {{--&nbsp;&nbsp;·&nbsp;&nbsp;--}}
-                                                {{--2h ago--}}
-                                            {{--</div>--}}
-                                        {{--</div> <!-- / .message -->--}}
-
-                                        {{--<div class="message">--}}
-                                            {{--<img src="assets/demo/avatars/2.jpg" alt="" class="message-avatar">--}}
-                                            {{--<a href="#" class="message-subject">Lorem ipsum dolor sit amet.</a>--}}
-                                            {{--<div class="message-description">--}}
-                                                {{--from <a href="#">Robert Jang</a>--}}
-                                                {{--&nbsp;&nbsp;·&nbsp;&nbsp;--}}
-                                                {{--2h ago--}}
-                                            {{--</div>--}}
-                                        {{--</div> <!-- / .message -->--}}
-
-                                    {{--</div> <!-- / .messages-list -->--}}
-                                    {{--<a href="#" class="messages-link">MORE MESSAGES</a>--}}
-                                {{--</div> <!-- / .dropdown-menu -->--}}
-                            {{--</li>--}}
-                            {{--<!-- /3. $END_NAVBAR_ICON_BUTTONS -->--}}
+                                        @forelse(\App\Model\Notifications::all() as $notification)
+                                        <div class="notification">
+                                            <div class="notification-title text-{{ $notification->criticity or "info" }}">{{ $notification->title }}</div>
+                                            {{--<div class="notification-description"><strong>{{ $notification->code }}</strong>: Syntax error in index.php at line <strong>461</strong>.</div>--}}
+                                            <div class="notification-link"><a href="{{ $notification->movie['id'] }}">{{ $notification->movie['title'] }}</a></div>
+                                            <div class="notification-link"><a href="{{ $notification->category['id'] }}">{{ $notification->category['title'] }}</a></div>
+                                            <div class="notification-link"><div class="label">{{ count($notification->tags)  }} tags</div> </div>
+                                            <div class="notification-ago">{{ \Carbon\Carbon::createFromTimeStamp(strtotime($notification->created_at))->diffForHumans() }}</div>
+                                            <div class="notification-icon fa fa-hdd-o bg-{{ $notification->criticity or "info" }}"></div>
+                                        </div> <!-- / .notification -->
+                                        @empty
+                                            <div class="alert">
+                                                <i class="fa fa-warbing"></i> Aucune notification en cours
+                                            </div>
+                                        @endforelse
 
 
-                            <li>
-                                <a href="" data-toggle="modal" data-target="#myModal"><i class="fa fa-magic"></i> Recherche avancée</a>
+                                    </div> <!-- / .notifications-list -->
+                                    <a href="#" class="notifications-link">MORE NOTIFICATIONS</a>
+                                </div> <!-- / .dropdown-menu -->
                             </li>
+                            <!-- /3. $END_NAVBAR_ICON_BUTTONS -->
+
+
+                            {{--<li>--}}
+                                {{--<a href="" data-toggle="modal" data-target="#myModal"><i class="fa fa-magic"></i> Recherche avancée</a>--}}
+                            {{--</li>--}}
 
                             <li>
                                 <form class="navbar-form pull-left">

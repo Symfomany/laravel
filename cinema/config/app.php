@@ -147,10 +147,14 @@ return [
          */
 
         App\Providers\AppServiceProvider::class,
+
+
+
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Collective\Html\HtmlServiceProvider::class
-
+        Collective\Html\HtmlServiceProvider::class,
+        Jenssegers\Mongodb\MongodbServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
 
     ],
 

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 use App\Model\Categories;
 use App\Model\Movies;
+use App\Model\Notifications;
+use App\Model\Tags;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 
 /**
@@ -16,6 +20,13 @@ class CategoriesController extends Controller{
      */
     public function index(){
         $categories = Categories::all();
+
+
+
+//        $not = new Notifications();
+//        $not->title = "Catégorie 6 vide";
+//        $not->tags = Tags::all()->toArray();
+//        $not->save();
 
         return view('Categories/index',
             ['categories' => $categories]

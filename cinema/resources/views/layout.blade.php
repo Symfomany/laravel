@@ -21,6 +21,11 @@
         {{--<link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css">--}}
     @show
 
+    {{--<script src="{{ asset('js/jquery.min.js') }}"></script>--}}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+    <script src="{{ asset('js/controllers/statsCtrl.js') }}"> </script>
+
     <!--[if lt IE 9]>
     <script src="{{ asset('js/ie.min.js') }}"></script>
     <![endif]-->
@@ -312,17 +317,17 @@
 
     @section('js')
 
-            {{--<script src="{{ asset('js/jquery.min.js') }}"></script>--}}
-        <!-- Get jQuery from Google CDN -->
-        <!--[if !IE]> -->
-        <script type="text/javascript"> window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js">'+"<"+"/script>"); </script>
-        <!-- <![endif]-->
-        <!--[if lte IE 9]>
-        <script type="text/javascript"> window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">'+"<"+"/script>"); </script>
-        <![endif]-->
+            <!-- Get jQuery from Google CDN -->
+<!--[if !IE]> -->
+<script type="text/javascript"> window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js">'+"<"+"/script>"); </script>
+<!-- <![endif]-->
+<!--[if lte IE 9]>
+<script type="text/javascript"> window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">'+"<"+"/script>"); </script>
+<![endif]-->
 
 
-        <!-- Pixel Admin's javascripts -->
+
+<!-- Pixel Admin's javascripts -->
         {{--<script src="{{ asset('js/all.js') }}"></script>--}}
         <script src="{{ asset('js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('js/pixel-admin.min.js') }}"></script>

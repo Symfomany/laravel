@@ -3,6 +3,7 @@
 namespace App\Model;
 
 
+use App\Listeners\MoviesListeners;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
@@ -18,6 +19,44 @@ class Movies extends Model{
     public $timestamps = false;
 
     protected $dates = ['date_deleted'];
+
+    protected $fillable = ['title'];
+
+
+
+    public static function boot()
+    {
+        parent::boot();
+
+        Movies::observe(new MoviesListeners());
+
+        // Setup event bindings...
+    }
+
+
+
+    /**
+     * Get ALl Movies Cover and visible
+     * @param $query
+     * @return mixed
+     */
+    public function scopeBestCategories($query)
+    {
+        return $query->select('categories.title', DB::raw('COUNT(movies.id) as nb'))
+                ->join('categories', 'movies.categories_id',"=", 'categories.id')
+                ->groupBy('categories.id')
+                ->orderBy('nb', 'desc');
+    }
+
+    public function scopeByDate($query, $mois, $annee)
+    {
+        return $query->where(DB::raw('MONTH(date_release)'), $mois)
+        ->where(DB::raw('YEAR(date_release)'), $annee);
+    }
+
+
+
+
 
     /**
      * Get ALl Movies Cover and visible
@@ -55,29 +94,20 @@ class Movies extends Model{
     }
 
 
-
-
     public function sessions()
     {
         return $this->hasMany('App\Model\Sessions');
     }
 
 
-
-
     public function tags()
     {
-        return $this->hasMany('App\Model\Tags');
+        return $this->belongsToMany('App\Model\Tags', 'tags_movies');
     }
 
     public function medias()
     {
         return $this->hasMany('App\Model\Medias');
-    }
-
-    public function directors()
-    {
-        return $this->hasMany('App\Model\Comments');
     }
 
     public function actors()

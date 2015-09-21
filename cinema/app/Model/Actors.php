@@ -1,7 +1,9 @@
 <?php
 namespace App\Model;
 
+use App\Listeners\ActorsListeners;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class Actors représentant la table actors
@@ -29,6 +31,47 @@ class Actors extends Model{
      */
     protected $fillable = ['firstname', 'lastname'];
 
+
+    /**
+     * Nb of actors per city
+     * @param $query
+     */
+    public function scopeNbPerCity($query,
+                                   $tri = "nb",
+                                   $sens = "desc",
+                                   $limit = 5){
+
+        return $query->select(DB::raw('COUNT(id) as nb'), "city")
+            ->groupBy("city")
+            ->orderBY($tri, $sens)
+            ->take($limit);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public static function boot()
+    {
+        parent::boot();
+
+        Actors::observe(new ActorsListeners());
+
+        // Setup event bindings...
+    }
 
 
     public function movies()
